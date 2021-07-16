@@ -2,7 +2,7 @@
 
 - [Array](#Array)
 - [LinkedList](#LinkedList)
-- [Hash Table](#HashTable)
+- [Hash Table](#Hash Table)
 - Stack     
 - Queue
 - Graph
@@ -139,14 +139,25 @@ list.indexOf();     // return: index, -1
 <br>
 
 
-## HashTable
+## Hash Table
 
 #### 1. 개념
 
-- Key와 value 쌍으로 데이터를 저장하는 자료구조이다.
+- Hash 함수를 사용하여 변환한 값을 index 삼아 key와 value(data) 쌍을 저장하는 자료구조이다.
+- 각각의 key 값에 hash 함수를 적용하여 고유 index를 상성한 후, 이 index를 사용하여 값을 저장하고나 검색한다.
+- 이때, 실제 값이 저장되는 곳을 bukets 혹은 slot이라고 한다.
+- 기본연산으로 search, insert, delete가 있다.
+- Hash 함수의 특성상 다른 문자열의 hasing 결과가 같을 수 있다. 이런 경우를 hash collision이라고 한다.
 
 
 #### 2. 구조
+
+
+#### 3. 시간 복잡도
+
+- 평균: O(1), key 값을 hash화 해서 고유 index를 생성한 경우
+- 데이터가 충돌한 경우: O(n), 연결 리스트를 모두 검색해야 한다.
+
 
 
 <br>
@@ -168,5 +179,7 @@ LinkedList
 
 HashTable
 - https://velog.io/@cyranocoding/Hash-Hashing-Hash-Table%ED%95%B4%EC%8B%9C-%ED%95%B4%EC%8B%B1-%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-6ijyonph6o
-- 
+- https://mangkyu.tistory.com/102
+
+
 
