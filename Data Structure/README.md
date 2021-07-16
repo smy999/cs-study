@@ -2,7 +2,7 @@
 
 - [Array](#Array)
 - [LinkedList](#LinkedList)
-- [Hash Table](#Hash Table)
+- [Hash Table](#HashTable)
 - Stack     
 - Queue
 - Graph
