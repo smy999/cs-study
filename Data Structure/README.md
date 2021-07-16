@@ -2,7 +2,7 @@
 
 - [Array](#Array)
 - [LinkedList](#LinkedList)
-- [HashTable](#HashTable)
+- [Hash Table](#Hash Table)
 - Stack
 - Queue
 - Graph
@@ -73,7 +73,7 @@ for(int i = 0; i < arr2.length(); i++) {
 
 ```
 [    Head     ]--->[     Node    ]    [     Node    ]    [     Node    ]    [     Node    ]
-                   [Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]---> [    Tail     ]
+                   [Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]--->[    Tail     ]
 ```
 - Node: 데이터 저장 단위
 - Data: 실제 data를 저장하는 곳
@@ -139,9 +139,14 @@ list.indexOf();     // return: index, -1
 <br>
 
 
-## HashTable
+## Hash Table
 
 #### 1. 개념
+
+- Key와 value 쌍으로 데이터를 저장하는 자료구조이다.
+
+
+#### 2. 구조
 
 
 <br>
@@ -159,5 +164,9 @@ LinkedList
 - https://velog.io/@riceintheramen/Linked-list
 - https://sycho-lego.tistory.com/17
 - https://velog.io/@choiiis/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EB%B0%B0%EC%97%B4Array%EA%B3%BC-%EB%A6%AC%EC%8A%A4%ED%8A%B8List
+- https://coding-factory.tistory.com/552
 
+HashTable
+- https://velog.io/@cyranocoding/Hash-Hashing-Hash-Table%ED%95%B4%EC%8B%9C-%ED%95%B4%EC%8B%B1-%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-6ijyonph6o
+- 
 
