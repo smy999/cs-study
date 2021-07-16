@@ -139,7 +139,7 @@ list.indexOf();     // return: index, -1
 <br>
 
 
-## Hash Table
+## HashTable
 
 #### 1. 개념
 
