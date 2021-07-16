@@ -25,6 +25,7 @@
 
 - 맨앞/중간에 삽입/삭제: O(n)
 - 맨뒤에 삽입/삭제: O(1)
+- 탐색: O(1)
 
 
 #### 3. 장단점
@@ -64,45 +65,83 @@ for(int i = 0; i < arr2.length(); i++) {
 - 서로 다른 곳에 저장된 데이터를 연결한 list 구조
 - 배열과는 달리 연속된 메모리를 필요로하지 않고, 빈 공간을 찾아 연결한 후 사용한다. (Array는 물리적으로 연속된 메모리에 저장, list는 논리적인 순서)
 - 자료구조 tree에 근간이 되는 자료구조이다.
+- 동적으로 메모리를 할당한다.
+- 하나의 link에 4byte를 차지하며, double LinkedList는 8byte를 차지한다.
 
 
 #### 2. 구조
 
 ```
-[     Node    ]    [     Node    ]    [     Node    ]    [     Node    ]
-[Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]
-[    Head     ]                                          [    Tail     ] 
+[    Head     ]--->[     Node    ]    [     Node    ]    [     Node    ]    [     Node    ]
+                   [Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]---> [    Tail     ]
 ```
 - Node: 데이터 저장 단위
 - Data: 실제 data를 저장하는 곳
 - Pointer(Link): 다음 node의 연결 정보를 저장하는 공간으로 다음 node의 주소값을 가진다.
-- Head: LinkedList의 첫 node
-- Tail: LinkedList의 마지막 node
+- Head: LinkedList의 첫 node를 가리킨다.
+- Tail: LinkedList의 마지막 node로 Null을 값을 가진다.
 
 
 #### 3. 시간 복잡도
-- 
+
+- 맨 앞/뒤에서 삽입/삭제하는 경우: O(1)
+- 중간에 삽입/삭제하는 경우: O(n) = 탐색 시간
+- 탐색: O(n)
 
 
 #### 4. 장단점
 
 | 장점         | 단점         |
 | ----------- | ----------- |
-| index로 data에 빠르게 접근할 수 있다. | 배열 내의 데이터 이동이 어렵다. 중간에 삽입할 경우 삽입 위치 이후의 모든 원소를 한칸씩 뒤로 밀어야 한다. |
-| 삽 | 연속된 메모리 공간으로 중간 데이터가 삭제되는 메모리가 낭비되는 문제가 발생한다. |
-| 사전에 data 공간을 할당하지 않아도 된다.(배열과 다르게 선언 시 크기가 정해지지 않는다.) | 크기 변경이 불가능하다. 이후 새로운 데이터를 추가할 수 없어 새로운 배열을  생성한 후 기존 값을 복사해야 한다. |
+| data의 삽입/삭제가 편리하다.(해당 부분의 연결을 끊고 새로운 노드에 연결한 후 다음 노드와 연결해준다.) | 특정 데이터를 검색할 때 index로 접근하지 않기 때문에 처음부터 끝까짓 순회하여 시간이 오래걸린다. |
+| 논리적 순서를 갖는 특정으로 메로리를 효율적으로 사용할 수 있다. | Pointer를 저장하는 메모리 공간이 추가적으로 필요하다. |
+| 동적으로 메모리를 할당하여 선언 시 크기를 정하지 않아도 된다. (크기 변경이 가능하다.) | 구현이 어렵다. |
 
 
 #### 5. 사용법(Java)
 ```
+// 선언
+LinkedList list = new LinkedList();           // 타입이 없는 선언
+LinkedList<Type> list = new LinkedList<>();   // 타입이 있는 선언
 
+// add
+list.addFirtst();
+list.addLast();
+list.add()
+list.add(index, data)
+
+// remove
+list.removeFirst();
+list.removeLast();
+list.remove();        // 명시하지 않으면 0번째 삭제
+list.remove(index);
+list.clear();
+
+// 크기 구하기
+list.size();
+
+// 출력
+for(type i : list) Systme.out.print(i);   // for문 사용
+Iterator<Type> iter = list.iterator();    // Iterator 사용
+while(iter.haNext()) System.out.print(iter.next());
+
+// 검색
+list.contains();    // return: boolean
+list.indexOf();     // return: index, -1
 ```
+
+#### 6. 사용처
+- 추가와 삭제가 많은 경우에는 Array보다는 LinkedList를 사용한다.
+- 대용량 데이터 처리에 적합하다.
+- 크기가 정해지지 않은 경우에 사용한다.
 
 
 <br>
 
 
 ## HashTable
+
+#### 1. 개념
 
 
 <br>
@@ -117,3 +156,8 @@ Array
  
 LinkedList
 - https://opentutorials.org/module/1335/8821
+- https://velog.io/@riceintheramen/Linked-list
+- https://sycho-lego.tistory.com/17
+- https://velog.io/@choiiis/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EB%B0%B0%EC%97%B4Array%EA%B3%BC-%EB%A6%AC%EC%8A%A4%ED%8A%B8List
+
+
