@@ -188,7 +188,7 @@ list.indexOf();     // return: index, -1
 
 ### 1.  개념
 
-* tree 기반 자료구조로 heap 송석을 만족하는 거의 완전한 트리
+* tree 기반 자료구조로 heap 속성을 만족하는 완전한 트리
 * heap 속성?
   ** 큰 값은 상위, 작은 값은 하위에 위치하는 구조(혹은 반대)로, 부모 노드의 값이 자식 노드의 값보다 항상 크(작)다. 
   ** 이와 같은 구조로 우선순위를 같는 heap을 최대힙(max heap)과 최소힙(min heap)라고 한다.
@@ -258,5 +258,7 @@ HashTable
 - https://mangkyu.tistory.com/102
 
 Heap
-- 
+- https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html
+- https://kayuse88.github.io/binary-heap/
+- https://blog.naver.com/kaoara/221949258742
 
