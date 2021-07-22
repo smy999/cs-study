@@ -9,7 +9,7 @@
 - Tree
 - 그래프(Graph)와 트리(Tree)의 차이점
 - [Heap](#Heap)
-- Red-Black Tree
+- [Red-Black Tree](#Red-Black-Tree)
 - B+ Tree
 - [참고자료](#)
 
@@ -185,13 +185,12 @@ list.indexOf();     // return: index, -1
 
 <br>
 
+
 # Heap
 
 또는 Binary Heap
 
-
 ### 1.  개념
-
 * tree 기반 자료구조로 heap 속성을 만족하는 완전한 트리
 * heap 속성?
   * 큰 값은 상위, 작은 값은 하위에 위치하는 구조(혹은 반대)로, 부모 노드의 값이 자식 노드의 값보다 항상 크(작)다. 
@@ -224,22 +223,31 @@ list.indexOf();     // return: index, -1
 
 ![max heap](https://user-images.githubusercontent.com/33407191/126661530-9cea0716-9881-4dba-8751-38808a4a831a.png)
 
+
 ### 4. 연산
 * 삽입(Percolate-Up)
-1. 원소를 heap의 가장 마지막 node에 추가한다.
-2. 추가한 원소를 부모와 비교하며 순서가 heap 조건과 일치할 때까지 부모 node와 위치를 바꾼다.
+  1. 원소를 heap의 가장 마지막 node에 추가한다.
+  2. 추가한 원소를 부모와 비교하며 순서가 heap 조건과 일치할 때까지 부모 node와 위치를 바꾼다.
 * 삭제(Percolate-Down)
-1. heap의 root node를 삭제한다.
-2. 마지막 node를 root node로 이동한 후, 자식 node와 비교해가며 순서가 heap 조건과 일치할 때까지 자식 node와 위치를 바꾼다.
+  1. heap의 root node를 삭제한다.
+  2. 마지막 node를 root node로 이동한 후, 자식 node와 비교해가며 순서가 heap 조건과 일치할 때까지 자식 node와 위치를 바꾼다.
+* heapify
+  * Heap 성질을 만족하게 하는 연산으로, 위 삽입/삭제의 2번 단계에 해당한다. heap 성질을 만족하도록 만드는 연산이다.
 
-### 시간 복잡도
-* 삽입: 
-* 삭제: 
 
+### 5. 시간 복잡도
+* 삽입/삭제 : O(1)
+* 삽입/삭제 후 heapify하게 만드는 시간: O(logn)
+* 총 시간 복잡도: O(1)\*O(logn)
 
 <br>
 
 
+# Red-Black-Tree
+
+### 1.  개념
+
+* 완전이진트리(BST: Binary Search Tree)의 일종으로, 기본적인 아이디어를 유지하고 Tree의 밸런스가 무너지지 않게 하면서 최악의 경우에도 O(logn)의 시간복잡도를 갖게 하기 위한 자료구조
 
 
 
@@ -264,4 +272,10 @@ Heap
 - https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html
 - https://kayuse88.github.io/binary-heap/
 - https://blog.naver.com/kaoara/221949258742
+- https://soniacomp.medium.com/%EA%B8%B0%EC%88%A0%EB%A9%B4%EC%A0%91-%EC%9D%B4%EC%A7%84%ED%83%90%EC%83%89%ED%8A%B8%EB%A6%AC-%ED%9E%99-2e7812d088fa
 - 사진 출처: https://medium.com/@konduruharish/binary-heap-minheap-and-max-heap-in-typescript-and-c-be3cebee263e
+- https://ratsgo.github.io/data%20structure&algorithm/2017/09/27/heapsort/
+
+Red-Black Tree
+- https://ratsgo.github.io/data%20structure&algorithm/2017/10/28/rbtree/
+- https://github.com/namjunemy/TIL/blob/master/Algorithm/red_black_tree_01.md
