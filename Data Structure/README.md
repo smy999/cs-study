@@ -217,11 +217,11 @@ list.indexOf();     // return: index, -1
 ### 3. 종류
 * Max Heap: 우선순위가 높을수록(Root에 가까워질수록) Node의 Value값이 더 크다.
 
-![min heap](https://user-images.githubusercontent.com/33407191/126661525-2df5acd2-0c2b-485a-82c9-8ce7d676cb73.png)
+  ![min heap](https://user-images.githubusercontent.com/33407191/126661525-2df5acd2-0c2b-485a-82c9-8ce7d676cb73.png)
 
 * Min Heap: 우선순위가 높을수록(Root에 가까워질수록) Node의 Value값이 더 작다.
 
-![max heap](https://user-images.githubusercontent.com/33407191/126661530-9cea0716-9881-4dba-8751-38808a4a831a.png)
+  ![max heap](https://user-images.githubusercontent.com/33407191/126661530-9cea0716-9881-4dba-8751-38808a4a831a.png)
 
 
 ### 4. 연산
@@ -240,16 +240,34 @@ list.indexOf();     // return: index, -1
 * 삽입/삭제 후 heapify하게 만드는 시간: O(logn)
 * 총 시간 복잡도: O(1)\*O(logn)
 
+
 <br>
 
 
 # Red-Black-Tree
 
-### 1.  개념
+### 1. 개념
 
-* 완전이진트리(BST: Binary Search Tree)의 일종으로, 기본적인 아이디어를 유지하고 Tree의 밸런스가 무너지지 않게 하면서 최악의 경우에도 O(logn)의 시간복잡도를 갖게 하기 위한 자료구조
+* Red-Black Tree는 이진탐색트리(BST: Binary Search Tree)의 일종으로, 기본적인 아이디어를 유지하고 Tree의 밸런스가 무너지지 않게 하면서 최악의 경우에도 O(logn)의 시간복잡도를 갖게 하기 위한 자료구조
+* 이진탐색트리는 최악의 경우 tree의 높이만큼의 탐색시간이 걸린다.(계속해서 왼쪽 또는 오른쪽 node로 연결될 때: O(h)의 시간복잡도)
+* Red-Black Tree는 위와 같이 편향된 tree가 나오지 않도록 "조건"을 걸어 균형잡힌 tree로 만들어 준다. 따라서 red-black tree의 높이는 logn에 가까워지고, O(logn)의 시간복잡도를 가진다.
+* 자식노드가 존재하지 않을 경우 NIL node라고 부르는 특수한 node가 있다고 가정한다. 따라서 모든 leaf node는 NIL 노드이다.
+
+### 2. 정의(조건)
+| 정의         | 표현         |
+| ----------- | ----------- |
+| 각 node는 red 혹은 black이다. |  |
+| root nodes는 black이다. | Root Property |
+| 모든 leaf node(= leaf node)는 black이다. | External Property |
+| red node의 자식 node들은 전부 black이다.(= red node는 연속되어 위치하지 않는다.) | Internal Property (= No Double Red) |
+| 모든 node에 대해서 해당 node에서부터 자손인 leaf node에 이르는 모든 경로에는 동일한 개수의 black node가 존재한다. (= 단순 node의 수는 다를 수 있다.) | Depth Property |
 
 
+
+<br>
+
+
+<br>
 
 ## 참고자료
 
@@ -279,3 +297,4 @@ Heap
 Red-Black Tree
 - https://ratsgo.github.io/data%20structure&algorithm/2017/10/28/rbtree/
 - https://github.com/namjunemy/TIL/blob/master/Algorithm/red_black_tree_01.md
+- https://zeddios.tistory.com/237
