@@ -259,9 +259,17 @@ list.indexOf();     // return: index, -1
 | 각 node는 red 혹은 black이다. |  |
 | root nodes는 black이다. | Root Property |
 | 모든 leaf node(= leaf node)는 black이다. | External Property |
-| red node의 자식 node들은 전부 black이다.(= red node는 연속되어 위치하지 않는다.) | Internal Property (= No Double Red) |
-| 모든 node에 대해서 해당 node에서부터 자손인 leaf node에 이르는 모든 경로에는 동일한 개수의 black node가 존재한다. (= 단순 node의 수는 다를 수 있다.) | Depth Property |
+| red node의 자식 node들은 전부 black이다.<br>(= red node는 연속되어 위치하지 않는다.) | Internal Property<br>(= No Double Red) |
+| 모든 node에 대해서 해당 node에서부터 자손인 leaf node에 이르는 모든 경로에는 동일한 개수의 black node가 존재한다.<br>(= 단순 node의 수는 다를 수 있다.) | Depth Property |
 
+
+Red-Black Tree를 만들어보자
+
+node를 추가하다가 Double Red가 생긴다면?
+해결방법 2가지
+  * Restructuring
+  * Recoloring
+위 두가지 중 어떤 방법을 적용할 것인지는 uncle node의 color에 따라 결정된다.
 
 
 <br>
