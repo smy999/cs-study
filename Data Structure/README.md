@@ -216,18 +216,25 @@ list.indexOf();     // return: index, -1
 
 
 ### 3. 종류
+* Max Heap: 우선순위가 높을수록(Root에 가까워질수록) Node의 Value값이 더 크다.
 
-```
+![min heap](https://user-images.githubusercontent.com/33407191/126661525-2df5acd2-0c2b-485a-82c9-8ce7d676cb73.png)
 
-```
-- 
+* Min Heap: 우선순위가 높을수록(Root에 가까워질수록) Node의 Value값이 더 작다.
 
+![max heap](https://user-images.githubusercontent.com/33407191/126661530-9cea0716-9881-4dba-8751-38808a4a831a.png)
 
-### 4. 시간 복잡도
+### 4. 연산
+* 삽입(Percolate-Up)
+1. 원소를 heap의 가장 마지막 node에 추가한다.
+2. 추가한 원소를 부모와 비교하며 순서가 heap 조건과 일치할 때까지 부모 node와 위치를 바꾼다.
+* 삭제(Percolate-Down)
+1. heap의 root node를 삭제한다.
+2. 마지막 node를 root node로 이동한 후, 자식 node와 비교해가며 순서가 heap 조건과 일치할 때까지 자식 node와 위치를 바꾼다.
 
-- 
-
-
+### 시간 복잡도
+* 삽입: 
+* 삭제: 
 
 
 <br>
@@ -257,4 +264,4 @@ Heap
 - https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html
 - https://kayuse88.github.io/binary-heap/
 - https://blog.naver.com/kaoara/221949258742
-
+- 사진 출처: https://medium.com/@konduruharish/binary-heap-minheap-and-max-heap-in-typescript-and-c-be3cebee263e
