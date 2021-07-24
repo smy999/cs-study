@@ -10,7 +10,7 @@
 - 그래프(Graph)와 트리(Tree)의 차이점
 - [Heap](#Heap)
 - [Red-Black Tree](#Red-Black-Tree)
-- B+ Tree
+- [B+ Tree](#B+Tree)
 - [참고자료](#)
 
 <br>
@@ -21,7 +21,7 @@
 
 - 같은 type의 data를 연속된 메모리 공간에 순차적으로 저장한 선형 자로구조(sequence container)
 - data를 하나의 변수에 grouping해서 관리하는 위한 방법으로, 반복문과 함께 사용하면 효율적인 처리가 가능하다.
-- 배열의 크기는 고정, 선언 시 배열의 크기를 결정하고 이후 변경할 수 없다
+- 배열의 크기는 고정, 선언 시 배열의 크기를 결정하고 이후 변경할 수 없다.
 
 
 ### 2. 시간 복잡도
@@ -277,7 +277,7 @@ list.indexOf();     // return: index, -1
 
 ### 3. 높이
 
-<img src = "https://user-images.githubusercontent.com/33407191/126873131-ef2a7db1-381c-495e-a028-2d03b8e7e67d.png" width="600px">
+<img src = "https://user-images.githubusercontent.com/33407191/126873131-ef2a7db1-381c-495e-a028-2d03b8e7e67d.png" width="500px">
 
 
 * 특정 node x의 height h(x)는 자신으로부터 NIL 노드까지의 가장 긴 경로에 포함된 간선의 개수이다.
@@ -296,26 +296,27 @@ list.indexOf();     // return: index, -1
 * Rotation은 Red-Black Tree를 재정렬하는 방법 중 하나인 Restructuring 과정에서 사용된다.
 
 * Left Rotation
-  <img src = "https://user-images.githubusercontent.com/33407191/126873126-cf6b067a-ceed-45fc-a640-e17ab576eebe.png" width="500px">
+
+<img src = "https://user-images.githubusercontent.com/33407191/126873126-cf6b067a-ceed-45fc-a640-e17ab576eebe.png" width="400px">
+
   * B를 기준으로 *left rotation*
     1. B를 새로운 root로 지정한다.
     2. A를 B의 새로운 left childe로 지정한다.
     3. y를 A의 새로운 right child로 지정한다.
   * 해당 tree은 parent node가 존재하는 sub tree일 수 있다. 이때 A가 parent의 left child였다면 B를 parent의 left child로 설정한다. (A가 parent의 right child였을 때도 동일한 방법)
 
-  사진
-
-
 
 * Right Rotation
-  <img src = "https://user-images.githubusercontent.com/33407191/126873128-b59499f3-1719-49e2-a7fc-204c3de3e778.png" width="500px">
+
+<img src = "https://user-images.githubusercontent.com/33407191/126873128-b59499f3-1719-49e2-a7fc-204c3de3e778.png" width="400px">
+
   * A를 기준으로 *right rotation*
     1. A를 새로운 root로 지정한다.
     2. B를 A의 새로운 right childe로 지정한다.
     3. y를 B의 새로운 left child로 지정한다.
     4. 해당 tree은 parent node가 존재하는 sub tree일 수 있다. 이때 B가 parent의 left child였다면 A를 parent의 left child로 설정한다. (B가 parent의 right child였을 때도 동일한 방법)
 
-  사진
+
 
 * 시간 복잡도
   * Rotation의 시간 복잡도는 O(1)이다.
