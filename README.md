@@ -1,6 +1,6 @@
 # CS Study
 
-1. Data Structure
+## 1. Data Structure
 
 | 구분 | 진행상태 | 자료구조 |
 | ------ | ------ | ------ |
@@ -15,4 +15,4 @@
 | `필수` | :white_check_mark: | Heap |
 | `필수` | :white_check_mark: | Red-Black Tree |
 | `필수` | :white_check_mark: | B+ Tree |
-| 선택 | :white_large_square: | B/B-/B+ Tree |
+| `선택` | :white_large_square: | B/B-/B+ Tree |
