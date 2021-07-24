@@ -253,43 +253,120 @@ list.indexOf();     // return: index, -1
 * Red-Black Tree는 위와 같이 편향된 tree가 나오지 않도록 "조건"을 걸어 균형잡힌 tree로 만들어 준다. 따라서 red-black tree의 높이는 logn에 가까워지고, O(logn)의 시간복잡도를 가진다.
 * 자식노드가 존재하지 않을 경우 NIL node라고 부르는 특수한 node가 있다고 가정한다. 따라서 모든 leaf node는 NIL 노드이다.
 
-### 2. 정의(조건)
-| 정의         | 표현         |
-| ----------- | ----------- |
-| 각 node는 red 혹은 black이다. |  |
-| root nodes는 black이다. | Root Property |
-| 모든 leaf node(= leaf node)는 black이다. | External Property |
-| red node의 자식 node들은 전부 black이다.<br>(= red node는 연속되어 위치하지 않는다.) | Internal Property<br>(= No Double Red) |
-| 모든 node에 대해서 해당 node에서부터 자손인 leaf node에 이르는 모든 경로에는 동일한 개수의 black node가 존재한다.<br>(= 단순 node의 수는 다를 수 있다.) | Depth Property |
-
-
-### 3. 높이
-<img src = "https://user-images.githubusercontent.com/33407191/126868958-19bad9cd-2316-4d5c-8605-e79250d3e8be.png" width="600px">
-
-
-Red-Black Tree를 만들어보자
-
-node를 추가하다가 Double Red가 생긴다면?
-해결방법 2가지
-  * Restructuring
-  * Recoloring
-위 두가지 중 어떤 방법을 적용할 것인지는 uncle node의 color에 따라 결정된다.
 
 
 <br>
 
 
-### 4. 연산
 
-노드 x의 높이 h(x)는 자신으로부터 리프노드(NIL 노드)까지의 가장 긴 경로에 포함된 엣지의 개수이다.
-노드 x의 블랙-높이 bh(x)는 x로부터 리프노드(NIL 노드)까지의 경로상의 블랙노드의 개수이다. (노드 x 자신은 불포함)
-높이가 h인 노드의 블랙-높이는 bh >= (h/2) 이다.
-조건 4에 의해 레드노드는 연속될 수 없으므로 당연히 블랙노드의 수가 높이의 절반 이상이다.
-노드 x를 루트로하는 임의의 부트리는 적어도 2bh(x)-1개의 내부노드를 포함한다.(수학적귀납법)
-위의 두가지 증명으로 설명 가능한 것은, n개의 내부노드를 가지는 레드블랙트리의 높이는 2log(n+1) 이하이다.
-n >= 2bh-1 >= 2h/2-1 이므로, 여기서 bh와 h는 각각 루트 노드의 블랙-높이와 높이
-정의에서 설명하는 5가지 조건을 만족하는 레드블랙트리라면 자동으로 높이는 O(logn)이 된다.
-레드블랙트리에서의 Search 알고리즘은 BST에서와 같기 때문에, insert와 delete연산에 집중한다.
+### 2. 정의(조건)
+
+| 정의                                                         | 표현                                   |
+| ------------------------------------------------------------ | -------------------------------------- |
+| 각 node는 red 혹은 black이다.                                |                                        |
+| root nodes는 black이다.                                      | Root Property                          |
+| 모든 leaf node(= leaf node)는 black이다.                     | External Property                      |
+| red node의 자식 node들은 전부 black이다.<br>(= red node는 연속되어 위치하지 않는다.) | Internal Property<br>(= No Double Red) |
+| 모든 node에 대해서 해당 node에서부터 자손인 leaf node에 이르는 모든 경로에는 동일한 개수의 black node가 존재한다.<br>(= 단순 node의 수는 다를 수 있다.) | Depth Property                         |
+
+
+
+<br>
+
+
+
+### 3. 높이
+
+<img src = "https://user-images.githubusercontent.com/33407191/126868958-19bad9cd-2316-4d5c-8605-e79250d3e8be.png" width="600px">
+
+* 특정 node x의 height h(x)는 자신으로부터 NIL 노드까지의 가장 긴 경로에 포함된 간선의 개수이다.
+* 특정 node x의 black-height bh(x)는 x로부터 NIL 노드까지의 경로상의 black node의 개수이다. 이때, 자신이 black node라면 bh(x)에 포함하지 않는다. 따라서, NIL의 bh는 0이다.
+* Red-Black Tree의 높이는 O(logn)이다.
+  * height가 h인 node의 black-height는 ```bh >= (h/2)```이다. (red-node는 연속될 수 없으므로 black-node의 수가 높이의 절반 이상이다.)
+  * node x를 root로하는 임의의 sub tree는 적어도 ```2bh(x)-1```개의 internal node(내부노드)를 포함한다.
+  * ```n >= 2bh-1 >= 2h/2-1``` 이므로, 여기서 bh와 h는 각각 root의 balck-height와 height이며, 정의에서 설명하는 5가지 조건을 만족하는 Red-Black Tree라면 자동으로 높이는 O(logn)이 된다.
+
+<br>
+
+
+
+### 4. Rotation
+
+* Rotation은 Red-Black Tree를 재정렬하는 방법 중 하나인 Restructuring 과정에서 사용된다.
+
+* Left Rotation
+
+  * B를 기준으로 *left rotation*
+    1. B를 새로운 root로 지정한다.
+    2. A를 B의 새로운 left childe로 지정한다.
+    3. y를 A의 새로운 right child로 지정한다.
+  * 해당 tree은 parent node가 존재하는 sub tree일 수 있다. 이때 A가 parent의 left child였다면 B를 parent의 left child로 설정한다. (A가 parent의 right child였을 때도 동일한 방법)
+
+  사진
+
+
+
+* Right Rotation
+
+  * A를 기준으로 *right rotation*
+    1. A를 새로운 root로 지정한다.
+    2. B를 A의 새로운 right childe로 지정한다.
+    3. y를 B의 새로운 left child로 지정한다.
+    4. 해당 tree은 parent node가 존재하는 sub tree일 수 있다. 이때 B가 parent의 left child였다면 A를 parent의 left child로 설정한다. (B가 parent의 right child였을 때도 동일한 방법)
+
+  사진
+
+* 시간 복잡도
+  * Rotation의 시간 복잡도는 O(1)이다.
+
+
+
+<br>
+
+
+
+### 5. 재정렬
+
+
+
+Red-Black Tree를 만들어보자. node를 추가하다가 Double Red가 생긴다면?
+해결방법에는 2가지(restructuring, recoloring)가 있다.
+
+2가지 해결방법 중 어떤 방법을 적용할 것인지는 uncle node의 color에 따라 결정된다.
+
+사진
+
+  * Restructuring: uncle이 black일 때
+    1. 자식(child), 부모(parent), 부모의 부모(grand parent) 3개의 node를 정렬한다.
+    2. 중앙값을 parent node로 지정하고 나머지 두값을 child로 지정한다. 이때 rotation이 사용된다.
+    3. Parent node를 black으로, child node를 red로 지정한다. 
+  * Recoloring: uncle이 red일 때
+    1. Parent node를 black으로 변경한다.
+    2. Grand parent node를 red로 지정한다.
+    3. 이 과정을 위로 올라가면 반복해준다.
+    4. Grand parent node가 root이면 다시 black으로 변경한다.
+
+
+
+<br>
+
+
+
+
+### 4. 시간복잡도
+
+* Restructuring: O(1)
+* Recoloring: O(logn)
+* Search: Red-Black Tree의 search 알고리즘은 이진탐색트리(BST)와 같다.
+* Insert: O(logn)
+* Delete: O(logn)
+
+
+
+<br>
+
+
+
 
 
 <br>
@@ -323,3 +400,7 @@ Red-Black Tree
 - https://ratsgo.github.io/data%20structure&algorithm/2017/10/28/rbtree/
 - https://github.com/namjunemy/TIL/blob/master/Algorithm/red_black_tree_01.md
 - https://zeddios.tistory.com/237
+* Rotation: https://ratsgo.github.io/data%20structure&algorithm/2017/10/27/avltree/
+* 재정렬: https://junboom.tistory.com/18
+* 시간복잡도: https://ferrante.tistory.com/46
+
