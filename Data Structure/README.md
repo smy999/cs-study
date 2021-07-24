@@ -277,7 +277,8 @@ list.indexOf();     // return: index, -1
 
 ### 3. 높이
 
-<img src = "https://user-images.githubusercontent.com/33407191/126868958-19bad9cd-2316-4d5c-8605-e79250d3e8be.png" width="600px">
+<img src = "https://user-images.githubusercontent.com/33407191/126873131-ef2a7db1-381c-495e-a028-2d03b8e7e67d.png" width="600px">
+
 
 * 특정 node x의 height h(x)는 자신으로부터 NIL 노드까지의 가장 긴 경로에 포함된 간선의 개수이다.
 * 특정 node x의 black-height bh(x)는 x로부터 NIL 노드까지의 경로상의 black node의 개수이다. 이때, 자신이 black node라면 bh(x)에 포함하지 않는다. 따라서, NIL의 bh는 0이다.
@@ -295,7 +296,7 @@ list.indexOf();     // return: index, -1
 * Rotation은 Red-Black Tree를 재정렬하는 방법 중 하나인 Restructuring 과정에서 사용된다.
 
 * Left Rotation
-
+  <img src = "https://user-images.githubusercontent.com/33407191/126873126-cf6b067a-ceed-45fc-a640-e17ab576eebe.png" width="500px">
   * B를 기준으로 *left rotation*
     1. B를 새로운 root로 지정한다.
     2. A를 B의 새로운 left childe로 지정한다.
@@ -307,7 +308,7 @@ list.indexOf();     // return: index, -1
 
 
 * Right Rotation
-
+  <img src = "https://user-images.githubusercontent.com/33407191/126873128-b59499f3-1719-49e2-a7fc-204c3de3e778.png" width="500px">
   * A를 기준으로 *right rotation*
     1. A를 새로운 root로 지정한다.
     2. B를 A의 새로운 right childe로 지정한다.
@@ -334,7 +335,7 @@ Red-Black Tree를 만들어보자. node를 추가하다가 Double Red가 생긴�
 
 2가지 해결방법 중 어떤 방법을 적용할 것인지는 uncle node의 color에 따라 결정된다.
 
-사진
+<img src = "https://user-images.githubusercontent.com/33407191/126873123-0070bf95-0109-41b3-8717-82e7c84fc26d.png" width="600px">
 
   * Restructuring: uncle이 black일 때
     1. 자식(child), 부모(parent), 부모의 부모(grand parent) 3개의 node를 정렬한다.
@@ -349,7 +350,6 @@ Red-Black Tree를 만들어보자. node를 추가하다가 Double Red가 생긴�
 
 
 <br>
-
 
 
 
