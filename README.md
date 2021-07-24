@@ -1,5 +1,7 @@
 # CS Study
 
+<br>
+
 ## 1. Data Structure
 
 | 구분 | 진행상태 | 자료구조 |
