@@ -364,12 +364,72 @@ Red-Black Tree를 만들어보자. node를 추가하다가 Double Red가 생긴�
 
 
 <br>
+<br>
+
+# B+Tree
+
+### 1. 개념
+
+* B+ Tree는 key에 의해서 식별되는 record의 효율적인 삽입, 삭제, 검색을 통해 정렬된 데이터를 표현하기 위한 tree 자료구조이다.
+* B tree는 모든 node에 record pointer를 가지지만, B+ Tree는 leaf node에서만 record pointer를 가진다.
+  * 모든 record들은 tree의 가장 하위인 leaf node에 정렬되어있다. 그래서 leaf node를 data node라고 하기도 한다.
+  * leaf node가 아닌 index node(inner block)에는 key 정보가 저장되어 있다.
+* B+ Tree의 Inner Node는 Data(record)가 없기 때문에 B-Tree의 Inner Node에 비하여 용량작다.
+  * 하나의 Disk Block에 더 많은 Inner Node를 배치 할 수 있게 되어, Key 탐색시 B-Tree에 비하여 상대적으로 적은 Disk Block만 읽어도 된다. 
+  * 때문에 B+ Tree는 Key 탐색시 B-Tree보다 좀더 나은 성능을 보여준다.
+* M차 B+ Tree의 특징
+  * node는 최대 *M*개 부터 *M*/2개 까지의 자식을 가질 수 있다.
+  * node에는 최대 *M*−1개 부터 [*M*/2]−1개의 키가 포함될 수 있다.
+  * 노드의 키가 *x*개라면 자식의 수는 *x*+1개다.
+  * 최소차수는 자식수의 하한값을 의미하며, 최소차수가 *t*라면 *M*=2*t*−1을 만족한다. (최소차수 *t*가 2라면 3차 B+ tree이며, key의 하한은 1개다.)
+
+<br>
 
 
+
+### 2. 구조
+
+| 구분                        | 내용                                                         |
+| --------------------------- | ------------------------------------------------------------ |
+| Index Node<br>(=Inner Node) | Data node(=leaf node)를 제외한 node들<br>Index node의 key는 자신의 right sub tree의 data node의 첫번째에 위치한다. |
+| Data Node<br>(=Leaf Node)   | Linkedlist로 구성되며, data node 하나의 크기는 index node와 같지 않아도 된다.<br>LinkedList 구조를 따라서 모든 Data Node는 왼쪽에서 오른쪽으로 연결되어있다. |
 
 
 
 <br>
+
+
+
+### 3. 연산
+
+* Insert
+  * Overflow가 발생하면 split된다.
+  * 노드의 분열이 일어나면 중간 key 값이 부모 노드로 올라갈 뿐 아니라 새로 분열된 노드에도 포함되어야 한다.
+  * 새 노드는 leaf 노드끼리의 linked list에도 삽입되어야 한다.
+* Delete
+  * 재배치와 합병이 필요하지 않을 때는 leaf 노드에서만 삭제된다.
+  * Index 부분은 다른 key 값을 찾는데 사용될 수 있기 때문에 leaf node의 값이 삭제되어도 삭제하지 않는다.
+
+* 재배치할 경우 index 부분의 node의 key 값은 변하지만 tree 구조는 변하지 않는다.
+* 합병을 할 경우 index 부분에서도 key 값을 삭제한다.
+
+
+
+<br>
+
+
+
+### 4. 사용처
+
+* RDB(Relational Database): table indexing을 위해 사용
+* File System: block indexing을 위해 사용
+
+
+
+<br>
+<br>
+
+
 
 ## 참고자료
 
@@ -404,3 +464,9 @@ Red-Black Tree
 * 재정렬: https://junboom.tistory.com/18
 * 시간복잡도: https://ferrante.tistory.com/46
 
+B+ Tree
+* https://ssup2.github.io/theory_analysis/B_Tree_B+_Tree/
+* https://ju-hy.tistory.com/106
+* https://ko.wikipedia.org/wiki/B%2B_%ED%8A%B8%EB%A6%AC
+* https://wangin9.tistory.com/entry/B-tree-B-tree
+* 삽입삭제 정리짱: https://velog.io/@emplam27/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-B-Plus-Tree
