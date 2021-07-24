@@ -277,7 +277,7 @@ list.indexOf();     // return: index, -1
 
 ### 3. 높이
 
-<img src = "https://user-images.githubusercontent.com/33407191/126873131-ef2a7db1-381c-495e-a028-2d03b8e7e67d.png" width="500px">
+<img src = "https://user-images.githubusercontent.com/33407191/126875429-35b61e28-bdf4-40fc-bc6c-c52c0ef41135.png" width="500px">
 
 
 * 특정 node x의 height h(x)는 자신으로부터 NIL 노드까지의 가장 긴 경로에 포함된 간선의 개수이다.
