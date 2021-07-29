@@ -18,3 +18,17 @@
 | `필수` | :white_check_mark: | Red-Black Tree |
 | `필수` | :white_check_mark: | B+ Tree |
 | `선택` | :white_large_square: | B/B*/B+ Tree |
+
+<br>
+
+## 2. 
+
+| 구분 | 진행상태 | 자료구조 |
+| ------ | ------ | ------ |
+| `필수` | :white_large_square: | OSI 7계층 |
+| `필수` | :white_large_square: | TCP/IP의 개념 |
+| `필수` | :white_large_square: | TCP와 UDP |
+| `필수` | :white_large_square: | TCP와 UDP의 헤더 분석 |
+
+<br>
+
