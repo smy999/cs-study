@@ -9,6 +9,8 @@
 
 ## OSI 7계층
 
+![network_OSI_7layer](https://user-images.githubusercontent.com/33407191/127672399-fc972cfa-875b-4e5a-82f7-257e8bba3a83.png)
+
 __OSI(Open System Interconnect)__는 세계표준화기구(ISO)가 제정한 것으로, __'어떤 경로와 방식으로 데이터가 송수신되는가'__를 보여주는 __Network Model__이다.
 
 초기 정리가 되지 못해 어지럽고 복잡했던 네트워크 장치로 인해 회사의 장비마다 호환이 되지 않는 어려움이 있었다. 이런 불편함을 해소하기 위해 네트워크를 7계층으로 분리하면서 OSI라는 표준을 만들었다.
