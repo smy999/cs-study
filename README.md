@@ -33,7 +33,7 @@
 | `필수` | :white_large_square: | HTTP와 HTTPS |  |
 | `필수` | :white_large_square: | HTTP 요청/응답 헤더 |  |
 | `필수` | :white_large_square: | HTTP와 HTTPS 동작 과정 |  |
-| `필수` | :white_large_square: | CORS란 |  |
+| `필수` | :white_large_square: | CORS란 | 진행중 |
 
 <br>
 
