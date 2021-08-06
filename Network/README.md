@@ -8,7 +8,7 @@
 * HTTP와 HTTPS
 * HTTP 요청/응답 헤더
 * HTTP와 HTTPS 동작 과정
-* CORS란
+* CORS란?
 
 <br>
 
