@@ -13,10 +13,9 @@
 * 쿠키(Cookie)와 세션(Session)
 * DNS
 * REST와 RESTful의 개념
-* 소켓(Socket)이란
+* [Socket이란](#Socket이란)
 * Socket.io와 WebSocket의 차이
 * Frame, Packet, Segment, Datagram
-
 
 <br>
 
@@ -73,11 +72,11 @@
 ### Network Layer
 
 *  IP주소를 제공하는 계층
-* data에 목적지 주소를 지정하고 전송 경로를 결정하는 데 필요한 조건
-* Node들을 거칠때마다 routing(라우터의 NAT 기능 활성화=공유기 역할)을 해주는 역할
-  * 공유기는 하나의 외부 통신선에서 들어오는 요청을 사설망에 연결되어있는 컴퓨터에게 전달해주는 역할을 한다.
-* 전송 단위: Packet
-* 사용처: 라우터, L3 스위치, IP 공유기
+*  data에 목적지 주소를 지정하고 전송 경로를 결정하는 데 필요한 조건
+*  Node들을 거칠때마다 routing(라우터의 NAT 기능 활성화=공유기 역할)을 해주는 역할
+   * 공유기는 하나의 외부 통신선에서 들어오는 요청을 사설망에 연결되어있는 컴퓨터에게 전달해주는 역할을 한다.
+*  전송 단위: Packet
+*  사용처: 라우터, L3 스위치, IP 공유기
 
 <br>
 
@@ -275,6 +274,57 @@ TCP와 UDP는 **Port Numer** 라는 숫자를 이용하여 어떤 application에
 
 
 
+
+
+<hr>
+
+<hr>
+
+
+
+## Socket이란
+
+#### 개념
+
++ Socket은 추상적인 개념의 통신 접속점이다. 네트워크 응용 프로그램은 socket을 활용하여 통신망에서 데이터를 송수신한다.
+
+* Socket은 두 프로그램이 네트워크를 통해 서로 통신하기 위해 양쪽에 생성되는 링크의 단자이다. 
+  * 두 socket이 연결되어야 비로소 서로 다른 프로세스간의 데이터를 전송할 수 있다.
+  * 네트워크 상에서 동작하는 프로그램간 통신의 종착점(Endpoint).
+  * Endpoint? IP 주소와 port 번호의 조합을 말하며, 전송할 목적지를 의미한다.
+
+* TCP/IP를 이용하는 창구 역할을 하며, 응용 프로그램과 Socket 사이의 interface 역할을 수행한다.
+  * 네트워크에서 데이터를 통신할 수 있도록 연결해주는 연결부
+
+* 데이터를 통신할 수 있도록 하는 Endpoint이기 때문에 두 통신 프로그램(client, server) 모두에 socket이 생성되어야 한다.
+  * client와 server는 socket에 데이터를 쓰거나 읽어서 통신한다.
+
+
+
+<br>
+
+#### Socket의 종류
+
+| 구분            | 내용                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Stream Socket   | Protocol: **TCP**<br>**연결형**: 양방향으로 byte stream을 전송할 수 있는 연결 지향형 Socket으로 양쪽 어플리케이션 모두 데이터를 교환할 수 있다.<br />보장: 오류수정, 전송처리, 흐름제어, 순서유지(중복된 데이터 수신 방지)<br />오버헤드: 각 메시지를 보내기 위해 별도의 연결을 생성하므로 오버해드가 존재한다.<br />사용처: 대량의 데이터를 보내는 경우에 적합 |
+| Datagram Socket | Protocol: **UDP**<br />**비연결형**: 명시적으로 연결을 맺지 않는다. 메시지는 대상 socket에 적절히 수신된다.<br />보장: UDP 프로토콜에서는 메시지 크기의 제한이 있고, 확실한 전달 역시 보장하지 않는다. 따라서 전송중 데이터를 손실해도 오류가 발생하지 않는다.<br />오버헤드: stream socket을 사용하는 것이 datagram socket을 사용하는 것보다 신뢰성을 보장하지만, datagram을 사용하면 오버헤드와 시간을 줄일 수 있다.<br />사용처: 빠르게 데이터를 전송할 때 적합 |
+| RAW Socket      | TCP/UDP 계층을 거치지 않고 우회하여 **어플리케이션**으로 바로 송신하는 socket<br>TCP/UDP 필터를 거치지 않아서 원형 그대로의 패킷을 볼 수 있다. = 어플리케이션은 모든 데이터를 처리(헤터 제거, 파싱 등)담당한다.<br />사용처: 실제 RAW socket을 사용하는 경우는 드물고, 대게 시스템 소프트웨어나 패킷을 분석하는 프로그램을 개발할 때 사용한다. |
+
+<br>
+
+#### HTTP와 Socket의 차이
+
+| HTTP                                                         | Socket                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 단방향 통신: Client가 요청을 보낸 경우에만 server가 응답한다.<br />Server에서 응답을 받은 후 바로 연결이 종료된다.<br />실시간이 아닌 필요한 경우에만 server로 요청을 보낸다. | 양방향 통신: socket은 client와 server가 특정 port를 통해 연결되어 실시간으로 통신한다.<br />Server도 client로 요청을 보낼 수 있으며 채팅이나 라이브 방송과 같이 바로바로 정보를 주고받는 경우에 사용된다. |
+
+
+
+
+
+
+
 ## 참고자료
 
 OSI 7계층
@@ -307,3 +357,11 @@ TCP와 UDP Header 분석
 * https://m.blog.naver.com/PostView.nhn?isHttpsRedirect=true&blogId=minki0127&logNo=220804490550
 * https://websecurity.tistory.com/92
 * https://www.netmanias.com/ko/post/blog/5372/ethernet-ip-ip-routing-network-protocol/packet-header-ethernet-ip-tcp-ip
+
+
+
+소캣(Socket)이란
+
+* https://popbox.tistory.com/66
+* https://medium.com/@yeon22/term-socket%EC%9D%B4%EB%9E%80-7ca7963617ff
+* https://watchout31337.tistory.com/68
