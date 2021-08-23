@@ -9,6 +9,14 @@
 * HTTP 요청/응답 헤더
 * HTTP와 HTTPS 동작 과정
 * CORS란?
+* GET 메서드와 POST 메서드
+* 쿠키(Cookie)와 세션(Session)
+* DNS
+* REST와 RESTful의 개념
+* 소켓(Socket)이란
+* Socket.io와 WebSocket의 차이
+* Frame, Packet, Segment, Datagram
+
 
 <br>
 
