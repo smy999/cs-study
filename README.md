@@ -38,7 +38,7 @@
 | `필수` | :white_large_square: | 쿠키(Cookie)와 세션(Session) |  |
 | `필수` | :white_large_square: | DNS |  |
 | `필수` | :white_large_square: | REST와 RESTful의 개념 |  |
-| `필수` | :white_large_square: | 소켓(Socket)이란 |  |
+| `필수` | :white_check_mark: | 소켓(Socket)이란 |  |
 | `필수` | :white_large_square: | Socket.io와 WebSocket의 차이 |  |
 | `필수` | :white_large_square: | Frame, Packet, Segment, Datagram |  |
 <br>
