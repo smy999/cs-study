@@ -23,7 +23,7 @@
 
 ## 2. Network
 
-| 구분 | 진행상태 | 자료구조 | 비고 |
+| 구분 | 진행상태 | 네트워크 | 비고 |
 | ------ | ------ | ------ | ------ |
 | `필수` | :white_check_mark: | OSI 7계층 |  |
 | `필수` | :white_check_mark: | TCP/IP의 개념 |  |
@@ -39,8 +39,14 @@
 | `필수` | :white_large_square: | DNS |  |
 | `필수` | :white_large_square: | REST와 RESTful의 개념 |  |
 | `필수` | :white_check_mark: | 소켓(Socket)이란 |  |
-| `필수` | :white_large_square: | Socket.io와 WebSocket의 차이 |  |
+| `필수` | :white_check_mark: | Socket.io와 WebSocket의 차이 |  |
 | `필수` | :white_large_square: | Frame, Packet, Segment, Datagram |  |
+
 <br>
 
+## Big Data
+| 구분 | 진행상태 | 빅데이터 | 비고 |
+| ------ | ------ | ------ | ------ |
+| `선택` | :white_check_mark: | KNN |  |
 
+<br>
