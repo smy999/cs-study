@@ -47,6 +47,6 @@
 ## Big Data
 | 구분 | 진행상태 | 빅데이터 | 비고 |
 | ------ | ------ | ------ | ------ |
-| `선택` | :white_check_mark: | KNN |  |
+| `선택` | :white_large_square: | KNN |  |
 
 <br>
