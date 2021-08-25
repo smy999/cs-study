@@ -14,17 +14,16 @@
 * DNS
 * REST와 RESTful의 개념
 * [Socket이란](#Socket이란)
-* Socket.io와 WebSocket의 차이
-* Frame, Packet, Segment, Datagram
+* [Socket.io와 WebSocket의 차이](#Socket.io와-WebSocket의-차이)
+* [Frame, Packet, Segment, Datagram](#Frame-Packet-Segment-Datagram)
 
 <br>
 
-## OSI 7계층
+# OSI 7계층
 
 **OSI(Open System Interconnect)** 는 세계표준화기구(ISO)가 제정한 것으로, **'어떤 경로와 방식으로 데이터가 송수신되는가'** 를 보여주는 **Network Model**이다.
 
 초기 정리가 되지 못해 어지럽고 복잡했던 네트워크 장치로 인해 회사의 장비마다 호환이 되지 않는 어려움이 있었다. 이런 불편함을 해소하기 위해 네트워크를 7계층으로 분리하면서 OSI라는 표준을 만들었다.
-
 
 
 #### 계층 분리를 왜하는가?
@@ -37,13 +36,9 @@
 
 <br>
 
-
-
 ![network_OSI_7layer](https://user-images.githubusercontent.com/33407191/127737230-5d52f1d3-1cbc-4e9c-b63f-1bac11376392.png)
 
 <br>
-
-
 
 ### Physical Layer
 
@@ -56,7 +51,6 @@
 <br>
 
 
-
 ### Data-Link Layer
 
 * Point to Point 간의 신뢰성 있는 전송을 보장하기 위한 계층
@@ -66,8 +60,6 @@
 * 사용처: MAC Address, 스위치, 브릿지
 
 <br>
-
-### 
 
 ### Network Layer
 
@@ -80,8 +72,6 @@
 
 <br>
 
-### 
-
 ### Transport Layer
 
 * End to End 사용자들이 data를 주고 받을 수 있게 하는 계층
@@ -90,8 +80,6 @@
 * 사용처: TCP, UDP Protocol
 
 <br>
-
-
 
 ### Session Layer
 
@@ -103,8 +91,6 @@
 
 <br>
 
-
-
 ### Presentation Layer
 
 * Code 간의 번역을 담당하여 사용자 시스템에서 data의 형식상 차이를 다루는 부담을 응용 계층으로부터 덜어 주는 역할
@@ -114,8 +100,6 @@
 * 사용처: 데이터의 압축이나 인코딩
 
 <br>
-
-
 
 ### Application Layer
 
@@ -127,8 +111,6 @@
 
 <br>
 
-
-
 ### Capsulation
 
 ![network_OSI_capsulation](https://user-images.githubusercontent.com/33407191/127737235-dad2f853-87ed-4b74-963a-9c37805b645c.png)
@@ -136,13 +118,12 @@
 * 송신자가 data를 보낼 때 처음 Application Layer에서 header를 붙여 하위 계층으로 넘겨줍니다. Presentation Layer은 Application Layer에서 내려온 header와 data를 하나의 data로 간주한다. 그래서 다시 자신의 header를 붙인다. 이런 과정은 __Encapsulation__이라고 한다.
 * Data를 받은 수신자는 반대로 Physical Layer부터 시작해 header의 정보를 확인하고 떼어낸다. 그리고 난 후 상위 계층으로 data를 전달한다. 이렇게 header를 떼어내는 과정을 __Decapsulation__이라고 한다.
 
-<br>
 
 <br>
+<br>
 
 
-
-## TCP/IP의 개념
+# TCP/IP의 개념
 
 Data가 목적지에 전달될 수 있도록 보장해주는 통신 규약으로, TCP와 IP 두가지의 protocol로 구성된다.
 
@@ -163,13 +144,12 @@ Data가 목적지에 전달될 수 있도록 보장해주는 통신 규약으로
 * Internet Protocol Suit?
   * Internet에서 컴퓨터들이 서로 정보를 주고받는데 쓰이는 protocol의 모음이다. Internet protocol suit 중에서 TCP/IP가 가장 많이 쓰여서 TCP/IP suit라고 불리기도 한다.
 
-<br>
 
 <br>
+<br>
 
 
-
-## TCP와 UDP
+# TCP와 UDP
 
 Transport Layer는 송신자와 수신자를 연결하는 통신 서비스를 제공하는데, 이곳에서 사용되는 protocol에 대표적으로 TCP, UDP가 있다.
 
@@ -181,19 +161,19 @@ UDP는 data를 datagram 단위로 처리하는 비연결형 protocol
 
 <br>
 
-#### TCP?
+### TCP?
 
 TCP의 경우 **신뢰성**있는 통신을 보장한다. 따라서 데이터가 전달되는 과정에서 여러 스위치, 라우터을 거치면서 데이터가 잘못 전달되는 현상이나 전달이 안되는 경우 오류제어, 흐름제어를 통해 신뢰성있는 데이터가 전달될 수 있도록 한다. 또한, 연결 시 3-way hanshaking 방식으로 목적지와 상호 packet을 교환하여 연결한다. 연결을 종료할 때는 4-way hanshaking 방식을 사용한다. 신뢰성 연결과 전달을 보장하는 만큼 중간의 확인 과정을 거치고 연결을 계속 유지해야되기 때문에 그만큼의 자원이 더 들어간다.
 
 <br>
 
-#### UDP?
+### UDP?
 
 UDP은 비연결형 Protocol로, data를 **빠르게** 전달하는데에 초점을 두고 있다. 따라서 UDP는 목적지에 data가 제대로 전달 되었는지 조차 확인하지 않는다. 비연결을 지향하기 때문에 데이터를 전달 시 TCP에 비해 오버헤드가 적다. 그래서 신뢰성 있는 데이터 전송이 필요할 때보다 streaming같이 연속적인 특성을 가지고 있는 서비스에 사용한다.
 
 <br>
 
-#### Port Number?
+### Port Number?
 
 TCP와 UDP는 **Port Numer** 라는 숫자를 이용하여 어떤 application에 data를 전달할지 식별한다. Port Number는 0~65535 범위를 가지며 범위에 따라 용도를 달리한다.
 
@@ -229,7 +209,7 @@ TCP와 UDP는 **Port Numer** 라는 숫자를 이용하여 어떤 application에
 
 
 
-## TCP와 UDP header 분석
+# TCP와 UDP header 분석
 
 
 
@@ -257,10 +237,7 @@ TCP와 UDP는 **Port Numer** 라는 숫자를 이용하여 어떤 application에
 * Option : 최대 segment size 지정 들 추가적인 사항이 있을 때 사용
 
 
-
 <br>
-
-
 
 ![network_UDP_header](https://user-images.githubusercontent.com/33407191/127744423-4889a6ef-3206-43d7-9125-c5f19b7ac4b1.png)
 
@@ -268,21 +245,19 @@ TCP와 UDP는 **Port Numer** 라는 숫자를 이용하여 어떤 application에
 * Destonation Port : 목적지 Port Number로, 응용 프로그램에 따라 정해짐
 * Checksum : header와 data 오류를 확인하기 위한 field로, UDP header는 오류 복구를 위한 field가 불필요하기 때문에 TCP header에 비해 간단
 
-<br>
 
 <br>
-
-
-
+<br>
 
 
 <hr>
-
 <hr>
 
 
+<br>
+<br>
 
-## Socket이란
+# Socket이란
 
 ### 개념
 
@@ -318,11 +293,75 @@ TCP와 UDP는 **Port Numer** 라는 숫자를 이용하여 어떤 application에
 | 단방향 통신: Client가 요청을 보낸 경우에만 server가 응답한다.<br />Server에서 응답을 받은 후 바로 연결이 종료된다.<br />실시간이 아닌 필요한 경우에만 server로 요청을 보낸다. | 양방향 통신: socket은 client와 server가 특정 port를 통해 연결되어 실시간으로 통신한다.<br />Server도 client로 요청을 보낼 수 있으며 채팅이나 라이브 방송과 같이 바로바로 정보를 주고받는 경우에 사용된다. |
 
 
+<br>
+<br>
+
+
+# Socket.io와 WebSocket의 차이
+
+### 개념
+
+Connectionless: 기존의 HTTP  프로토코은 서버와 클라이언트 사이의 연결이 유지되지 않는다.
+
+= 전형적인 브라우저 렌더링 방식은 HTTP 요청에 대한 HTTP 응답을 받아서 브라우저의 화면을 깨끗하게 지우고 받은 내용을 새로 표시한다. 
+
+= 실시간으로 사용자와 상호작용하는 방식이 나타나고 사용자와 상호작용하는 웹 서비스를 선호하는 사용자가 증가하면서 화면의 깜빡거림 없이 원하는 부분만 다시 그리며 실시간으로 사용자와 상호작용하는 방식이 나타났다.
+
+
+사용자와 상호작용하는 웹 서비스를 선호하는 사용사가 증가하면서 RIA(rich Internet Application) 기술이 발달했다.
+
+= 상호작용(실시간 통신)을 하는 웹 서비스를 위해서는 숨겨진 프레임(Hidden Frame)을 이용한 방법이나 Long Polling, Stream 등 다양한 방법을 사용하여 복잡하고 여러운 코드로 구현해야 한다.
+
+= 그러나 이러한 방식은 브라우저가 HTTP 요처을 보내고 우베 서버가 이 요청에 대한 HTTP 응답을 보내느 단방향 메세지 교환 규칙을 변경하지 않고 구현한 방식이다.
+
+= polling: 하나의 장치(또는 프로그램)가 충돌 회피 도는 동기화 처리 등을 목적으로 다른 장치(또는 프로그램)의 상태를 주기적으로 검사하여 일정한 조건을 만족할 때 송수신 작업을 처리한다.
+
+= long polling: 클라이언트가 웹 서버에게 새로운 내용이 있는지 물어봤을 때 웹 서버에서 새로운 내용이 없다면 대답하지 않다가 새로운 내용이 있을 때 대답해주는 방식이다.
+
+보다 쉽게 상호작용하는 웹 페이지를 만들려면 브라우저와 웹 서버 사이에 더 자유로운 양방향 메시지 송수신(bi-directional full-duplex communication)이 필요하다. 그래서 HTML5 표준 기술로 WebSocket API가 등장한다.
+
+<br>
+
+### WebSocket 이란?
+
+**웹 페이지의 한계에서 벗어나 실시간으로 상호작용하는 웹 서비스를 만드는 표준 기술인 WebSocket**
+
+* WebSocket은 소켓을 이용하여 서버와 클라이언트  사이에서 자유롭게 데이터를 주고 받는 양방향 통신을 가능하게 한다.
+* 즉 기존 요청-응답 관계 방식보다 더 쉽게 데이터를 교환할 수 있다.
+
+<br>
+
+### Socket.io 란?
+
+**브라우저에 상관없이 다양한 방식의 실시간 웹 기술을 손쉽게 사용할 수 있는 socket.io**
+
+* Socket.io는 node.js 기반으로 만들어지 기술로, 거의 모든 웹 브라우저와 모바일 장치를 지원하는 실시간 웹 어플리케이션 지원 라이브러리이다.
+
+* 전부 자바스크립트로 구현되어 있으며, Websocket, Flashsocket, AJAX Long Polling, AJAX Multi part Streaming, IFrame, JSONP Poling 등 대부분의 실시간 웹 기술들을 추상화해 놓았다.
+
+<br>
+
+### 차이점
+
+Socket.io와 WebSocket은 실시간 총신을 구현하는 데 가장 널리 사용되는 대표적 솔루션이다. 그렇다면 어떤 차이점이 있을까?
+
+| WebSocket                                                    | Socket.io                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| HTML5 웹 표준 기술<br>매우 빠르게 작동하며 통신할 때 적은 데이터 사용<br>이벤트를 단순히 듣고, 보내는 것만 가능<br>다른 HTTP Request와 마찬가지로 80번 port를 통해 웝 서버에 연결<br>http:// 대신 ws://로 시작하며 streaming과 유사한 방식으로 푸쉬를 지원<br>브로드캐스트: 모든 클라이언트에세 새로운 사용자가 참여했음을 알리고 싶을 때, 연결된 모든 클라이언트 목록이 필요하며 메시지를 하나씩 직접 전송 | 표준 기술이 아니며, 라이브러리이다.<br>소켓 연결 실패 시 fallback을 통해 다른 방식으로 알아서 클라이언트와 연결 시도<br>방 개념을 사용해 일부 클라이언트에게만 데이터를 전송하는 브로트개스팅이 가능<br>어느 브라우저와도 상관없이 일관적으로 통신 가능<br>브로드캐스트: 모든 클라이언트에세 새로운 사용자가 참여했음을 알리고 싶을 때, 해당 메시지를 한 번에 모든 사람에게 쉽게 브로드캐스트할 수 있다. |
+
+
+<br>
+<br>
+
+
+# Frame, Packet, Segment, Datagram
+
 
 
 
 <br>
 <br>
+
 
 ## 참고자료
 
@@ -364,3 +403,14 @@ TCP와 UDP Header 분석
 * https://popbox.tistory.com/66
 * https://medium.com/@yeon22/term-socket%EC%9D%B4%EB%9E%80-7ca7963617ff
 * https://watchout31337.tistory.com/68
+
+
+
+Socket.io와 WebSocket의 차이
+
+* https://eun-jeong.tistory.com/30
+* https://d2.naver.com/helloworld/1336
+* https://www.peterkimzz.com/websocket-vs-socket-io/
+* https://landwhale2.github.io/programming/75/
+* https://ichi.pro/ko/websocketgwa-socket-ioui-chaijeom-186805209650140
+* https://medium.com/@hyun.sang/network-%EC%86%8C%EC%BC%93%EA%B3%BC-%EC%9B%B9%EC%86%8C%EC%BC%93%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90-b1b745fcdcc2
