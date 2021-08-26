@@ -347,13 +347,67 @@ Socket.io와 WebSocket은 실시간 총신을 구현하는 데 가장 널리 사
 <br>
 
 
+
+
 # Frame, Packet, Segment, Datagram
 
 
 
+ ### Frame
+
+OSI 7계층의 데이터링크 계층(Data Link Layer)에서 다루는 내용
+
+최종적으로 데이터를 전송하기 전에 패킷에 header(Mac Address를 포함한)와 CRC를 위한 trailer가 붙은 메시지
+
+Data Link Layer에 도달하면 Mac Adress가 추가되어 Frame이 된다.
+
+
+
+### Packet
+
+OSI 7계층의 네트워크 계층(Network Layer)에서 다루는 내용
+
+전송을 위해 분할된 데이터 조각(세그먼트)에 목적지까지의 전달을 위해 source IP와 destination IP가 포함된 IP header가 분은 형태의 메시지
+
+Network Layer에 도달하면 source IP와 destination IP가 추가된 Packet이 된다.
+
+### 
+
+### Segment
+
+OSI 7계층의 전송 계층(Transport Layer)에서 다루는 내용
+
+데이터를 네크워크를 통한 실질적인 전송을 위하 적절한 크기로 분할한 조각
+
+Sourt port, destination port 정보, 분할된 조각의 순서 정보를 갖는다.
+
+Transport Layer 데이터 전송 단위에서 TCP이면 Segment
+
+
+
+### Datagram
+
+OSI 7계층의 전송 계층(Transport Layer)에서 다루는 내용
+
+데이터를 네크워크를 통한 실질적인 전송을 위하 적절한 크기로 분할한 조각
+
+Transport Layer 데이터 전송 단위에서 UDP이면 Datagram
+
+또한, datagram은 사용자의 순수한 메시지를 다르게 부르는 말이다.
+
+이건 무슨 소리지?
+
+* 또한, OSI 7계층의 전송 계층(Network Layer)에서 IP Protocal을 사용한다면 데이터 전송 단위로 Datagram을 사용한다.
+* 따라서 UDP Datagram, IP Datagram으로 구분한다.
+
+
 
 <br>
+
 <br>
+
+
+
 
 
 ## 참고자료
@@ -407,3 +461,11 @@ Socket.io와 WebSocket의 차이
 * https://landwhale2.github.io/programming/75/
 * https://ichi.pro/ko/websocketgwa-socket-ioui-chaijeom-186805209650140
 * https://medium.com/@hyun.sang/network-%EC%86%8C%EC%BC%93%EA%B3%BC-%EC%9B%B9%EC%86%8C%EC%BC%93%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90-b1b745fcdcc2
+
+
+
+Frame, Packet, Segment, Datagram
+
+* https://blog.naver.com/PostView.nhn?blogId=twers&logNo=50116953315
+* https://stackoverflow.com/questions/11636405/definition-of-network-units-fragment-segment-packet-frame-datagram
+
