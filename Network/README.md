@@ -361,7 +361,7 @@ OSI 7계층의 데이터링크 계층(Data Link Layer)에서 다루는 내용
 
 Data Link Layer에 도달하면 Mac Adress가 추가되어 Frame이 된다.
 
-
+<br>
 
 ### Packet
 
@@ -371,7 +371,7 @@ OSI 7계층의 네트워크 계층(Network Layer)에서 다루는 내용
 
 Network Layer에 도달하면 source IP와 destination IP가 추가된 Packet이 된다.
 
-### 
+<br>
 
 ### Segment
 
@@ -383,7 +383,7 @@ Sourt port, destination port 정보, 분할된 조각의 순서 정보를 갖는
 
 Transport Layer 데이터 전송 단위에서 TCP이면 Segment
 
-
+<br>
 
 ### Datagram
 
@@ -403,7 +403,6 @@ Transport Layer 데이터 전송 단위에서 UDP이면 Datagram
 
 
 <br>
-
 <br>
 
 
@@ -469,3 +468,5 @@ Frame, Packet, Segment, Datagram
 * https://blog.naver.com/PostView.nhn?blogId=twers&logNo=50116953315
 * https://stackoverflow.com/questions/11636405/definition-of-network-units-fragment-segment-packet-frame-datagram
 
+<br>
+<br>
