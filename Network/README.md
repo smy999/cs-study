@@ -351,9 +351,11 @@ Socket.io와 WebSocket은 실시간 총신을 구현하는 데 가장 널리 사
 
 # Frame, Packet, Segment, Datagram
 
+![network_data_transport_unit](https://user-images.githubusercontent.com/33407191/130973694-7b08c6f6-9899-4358-9641-9826a635106b.png)
 
+<br>
 
- ### Frame
+### Frame
 
 OSI 7계층의 데이터링크 계층(Data Link Layer)에서 다루는 내용
 
