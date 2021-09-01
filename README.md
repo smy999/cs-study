@@ -40,7 +40,26 @@
 | `필수` | :white_large_square: | REST와 RESTful의 개념 |  |
 | `필수` | :white_check_mark: | 소켓(Socket)이란 |  |
 | `필수` | :white_check_mark: | Socket.io와 WebSocket의 차이 |  |
-| `필수` | :white_large_square: | Frame, Packet, Segment, Datagram |  |
+| `필수` | :white_check_mark: | Frame, Packet, Segment, Datagram |  |
+
+<br>
+
+## 3. Spring
+
+| 구분 | 진행상태 | 네트워크 | 비고 |
+| ------ | ------ | ------ | ------ |
+| `필수` | :white_large_square: | Spring Framework란 |  |
+| `필수` | :white_large_square: | Spring, Spring MVC, Spring Boot의 차이 |  |
+| `필수` | :white_large_square: | Bean이란 |  |
+| `필수` | :white_large_square: | Container란 |  |
+| `필수` | :white_large_square: | IOC(Inversion of Control, 제어의 역전)란 |  |
+| `필수` | :white_large_square: | MVC 패턴이란 |  |
+| `필수` | :white_large_square: | DI(Dependency Injection, 의존성 주입)란 |  |
+| `필수` | :white_large_square: | AOP(Aspect Oriented Programming)란 |  |
+| `필수` | :white_large_square: | POJO |  |
+| `필수` | :white_large_square: | DAO와 DTO의 차이 |  |
+| `필수` | :white_large_square: | Spring JDBC를 이용한 데이터 접근 |  |
+| `필수` | :white_large_square: | Filter와 Interceptor 차이 |  |
 
 <br>
 
