@@ -49,7 +49,7 @@
 | 구분 | 진행상태 | 네트워크 | 비고 |
 | ------ | ------ | ------ | ------ |
 | `필수` | :white_check_mark: | Spring Framework란 |  |
-| `필수` | :white_large_square: | Spring, Spring MVC, Spring Boot의 차이 |  |
+| `필수` | :white_check_mark: | Spring, Spring MVC, Spring Boot의 차이 |  |
 | `필수` | :white_large_square: | Bean이란 |  |
 | `필수` | :white_large_square: | Container란 |  |
 | `필수` | :white_large_square: | IOC(Inversion of Control, 제어의 역전)란 |  |
