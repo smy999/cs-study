@@ -3,8 +3,8 @@
 * [Spring Framework란](#spring-framework란)
 * [Spring, Spring MVC, Spring Boot의 차이](#Spring-Spring-MVC-Spring-Boot의-차이)
 * [Bean이란](#Bean이란)
-* Container란
-* IOC(Inversion of Control, 제어의 역전)란
+* [Container란](#Container란)
+* [IoC(Inversion of Control, 제어의 역전)란](#IOC란)
 * MVC 패턴이란
 * DI(Dependency Injection, 의존성 주입)란
 * AOP(Aspect Oriented Programming)란
@@ -42,10 +42,15 @@ Java Platform을 위한 Open Source Application
 
 EJB에서 POJO로 바뀌면서 사용하는 구조적으로 간결해진 클래스를 제공한다.
 
+<br>
 
+### Spring Framework 구조 - 그림 추가하기
 
 <br>
 
+### Spring Framework 모듈 - 그림 추가하기
+
+<br>
 <br>
 
 
@@ -72,7 +77,7 @@ EJB에서 POJO로 바뀌면서 사용하는 구조적으로 간결해진 클래�
 
 ### Bean?
 
-Spring IOC 컨테이너가 관리(인스턴스화, 관리, 생성)하는 자바 객체를 Bean이라고 한다.
+Spring IoC 컨테이너가 관리(인스턴스화, 관리, 생성)하는 자바 객체를 Bean이라고 한다.
 
 Bean 객체는 new 연산자로 객체를 생성할 때의 객체가 아닌, ApplicationContext.getBean()으로 얻어질 수 있는 객체다.
 
@@ -82,7 +87,7 @@ POJO는 본래 자바의 장점을 살리는 특정 '기술'에 종속되어 동
 
 Beans는 Application의 핵심을 이루는 객체로, 대부분 Container에 공급하는 설정 메타 데이터(XML 파일)에 의해 생성된다.
 
-
+<br>
 
 ### 생성 1. Component Scanning
 
@@ -150,7 +155,6 @@ public class ExampleConfiguration {
 
 Spring Container에서 한 번 생성되어 사라질 때까지 Bean도 생성되어 사라진다.
 
-
 ![스크린샷 2021-09-06 오후 7 22 44](https://user-images.githubusercontent.com/33407191/132202747-9e75dc9b-c657-4144-991e-68d840562c94.png)
 
 <br>
@@ -176,9 +180,9 @@ Annotaion 만 남겨주면 Container 가 개발자가 원하는 상황에 코드
 <br>
 
 
-# IOC란?
+# IoC란
 
-Spring Framework는 IOC 기반이다. 그렇가면 IOC란 무엇인가?
+Spring Framework는 IoC 기반이다. 그렇가면 IoC란 무엇인가?
 
 **IOC는 Inversion of Control의 약자로, 제어의 역전이란 뜻을 가진다.**
 
@@ -189,15 +193,6 @@ IOC는 일반적인 흐름 구조가 하니다. IOC에서는 객체는 사용할
 객체 자신의 모든 권한을 다른 대상에 위임하여 제어 권한을 위임받은 특정 객체에 의해 결정되고 만들어진다.
 
 **제어의 역전이란, 객체의 생성부터 생명주기까지 기존 사용자가 모든 작업을 제어하던 것을 특정 객체에 위임하는 것을 말한다.**
-
-
-
-| HTTP | Socket |
-| ---- | ------ |
-|      |        |
-
-
-
 
 
 
