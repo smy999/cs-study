@@ -146,16 +146,34 @@ public class ExampleConfiguration {
 
 ### Scope
 
-모든 Bean은 Singleton으로 생성되어 관리한다.
+모든 Bean은 Singleton으로 생성되어 관리한다. (명시되지 않으면 Singleton으로 생성)
 
 Spring Container에서 한 번 생성되어 사라질 때까지 Bean도 생성되어 사라진다.
 
 
-
-# 여기부터 이어서 나중에!!
+![스크린샷 2021-09-06 오후 7 22 44](https://user-images.githubusercontent.com/33407191/132202747-9e75dc9b-c657-4144-991e-68d840562c94.png)
 
 <br>
+<br>
 
+# Container
+
+### 개념
+
+주입을 이용하여 객체를 관리하는 것이 Container다.
+
+Container는 객체관리를 주로 수행하는 그릇
+
+Bean의 생성과 관계, 사용, 생명 주기 등을 관장
+
+의존성 제어, 즉 객체 간의 의존성을 낮추기 위해 Spring 컨테이너가 사용
+(= Container 가 Bean 을 관리해주기 때문에, 개발자는 모듈 간에 의존 및 결합으로 인해 발생하는 문제로부터 자유로워 졌다.
+
+Annotaion 만 남겨주면 Container 가 개발자가 원하는 상황에 코드를 실행
+(= 메서드가 언제, 어디서 호출되어야 하는지 그리고 메서드를 호출하기 위해 필요한 매개 변수를 준비해서 Container 가 개발자 대신 알아서 호출)
+
+<br>
+<br>
 
 
 # IOC란?
@@ -227,6 +245,9 @@ Bean이란
 * https://velog.io/@gillog/Spring-Bean-%EC%A0%95%EB%A6%AC
 
 Container란
+
+* https://ibocon.tistory.com/122
+* 
 
 IOC(Inversion of Control, 제어의 역전)란
 
