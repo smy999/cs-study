@@ -8,7 +8,7 @@
 * MVC 패턴이란
 * DI(Dependency Injection, 의존성 주입)란
 * AOP(Aspect Oriented Programming)란
-* POJO
+* POJO란
 * DAO와 DTO의 차이
 * Spring JDBC를 이용한 데이터 접근
 * Filter와 Interceptor 차이
@@ -155,7 +155,7 @@ public class ExampleConfiguration {
 
 Spring Container에서 한 번 생성되어 사라질 때까지 Bean도 생성되어 사라진다.
 
-![스크린샷 2021-09-06 오후 7 22 44](https://user-images.githubusercontent.com/33407191/132202747-9e75dc9b-c657-4144-991e-68d840562c94.png)
+![스크린샷 2021-09-06 오후 7 22 44](https://user-images.githubusercontent.com/33407191/132202747-9e75dc9b-c657-4144-991e-68d840562c94.png)
 
 <br>
 <br>
@@ -196,18 +196,26 @@ IOC는 일반적인 흐름 구조가 하니다. IOC에서는 객체는 사용할
 
 
 
+<br>
+
+<br>
+
+
+
+# MVC 패턴이란
+
+MVC 는 Model, View, Controller의 약자로, 하나의 애플리케이션, 프로젝트를 구성할 때 그 구성요소를 세가지의 역할로 구분한 패턴이다. (= 소프트웨어 디자인 패턴)
+
+사용자가 controller를 조작하면 controller는 model을 통해서 데이터를 가져오고 그 정보를 바탕으로 시각적인 표현을 담당하는 View를 제어해서 사용자에게 전달한다.
 
 
 
 
-
-
-
-| HTTP | Socket |
-| ---- | ------ |
-|      |        |
-
-
+| 구분       | 설명                                                         |
+| ---------- | ------------------------------------------------------------ |
+| Model      | - 어떤 동작을 수행하는 코드<br>- 순수 Public 함수로만 이루지며, 몇몇 함수들은 사용자 질의(query)에 대한 정보를 담는다. |
+| View       | - Model은 여러 개의 View를 가질 수 있다.<br>- View는 Model에게 질의하여 Model로부터 값을 가져와 사용자에게 보여준다. (= 데이터 및 객체의 입출력을 담당)<br>- 사용자 인터페이스 요소로 사용자가 직접 볼 수 있는 화면을 의미한다. |
+| Controller | - View는 여러 개의 Controller를 가진다.<br>- 프로그램의 작동 순서, 방식을 제어한다.<br>- 사용자는 Controller를 통해 Model의 상태를 변경하거나 다른 클래스에게 알릴 수 있는 함수가 필요하다. |
 
 
 
@@ -216,6 +224,160 @@ IOC는 일반적인 흐름 구조가 하니다. IOC에서는 객체는 사용할
 <br>
 
 
+
+# DI(Dependency Injection, 의존성 주입)란
+
+### Object Dependencies(객체 의존성)
+
+* 현재 객체가 다른 객체와 상호작용(참조)하고 있다면 현재 객체는 다른 객체에 의존성을 가진다.
+* 즉, 하나의 모듈이 바뀌면 의존한 다른 모듈까지 변경 되어야 한다.
+* 또한 두 객체 사이의 의존성이 존재하면 Unit Test 작성이 어려워 진다.
+
+
+
+<br>
+
+
+
+### Dependency Injection(의존성 주입)
+
+* 객체 자체가 아니라 Framework에 의해 객체의 의존성이 주입되는 설계 패턴
+* Framework에 의해 동적으로 주입되므로 여러 객체 간의 결합이 줄어든다.
+* Dependency Injection은 Spring Framework에서 지원하는 IoC의 형태
+
+
+
+<br>
+
+
+
+### IoC(제어의 역전): 프로그램 제어권을 framework가 가져가는 것
+
+* 개발자가 모든 제어의 중심이지만 코드 전체에 대한 제어는 framework가 한다.
+* 개발자가 설정(xml, annotation 등)만 하면 Container가 알아서 처리한다.
+* 즉, 우리는 Framework 속에서 프로그래밍을 하는 것.
+
+
+
+<br>
+
+
+
+Container가 Bean 객체를 생성한 후, 종속성을 주입한다.
+
+##### Dependency Injection(의존성 주입)과 Inversion Of Control(제어의 역전)은 같은 의미로 사용된다. = IoC는 DI를 통해 달성된다.
+
+
+
+<br>
+
+
+
+### 의존성 주입하기(3가지 방법)
+
+1. Contructor Injection: 생성자를 통한 전달
+   <constructor-arg ref="cat"></constructor-arg>
+2. Method(Setter) Injection: setter() method를 이용한 전달
+   <property name="myName" value="poodle"></property>
+3. Field Injection: 멤버 변수를 통한 전달
+   
+   
+
+<br>
+
+<br>
+
+
+
+# AOP?
+
+##### Aspect Oriented Programming
+
+##### 여러곳에 흩여저 있는 공통 기능을 한곳에 모아서 관리하자.
+
+
+
+<br>
+
+
+
+### Spring Boot에서 구현하는 방법
+
+1. Spring Boot AOP Dependency
+
+```xml
+<dependency> 
+	<groupId>org.springframework.boot</groupId> 
+	<artifactId>spring-boot-starter-aop</artifactId> 
+</dependency>
+```
+
+2. AOP 관련 class를 Bean으로 생성 후 공통 기능 작성
+
+- @Component: @Aspect는 @Component를 갖지 않기 때문에 설정해줘야 한다.
+- @Aspect: AOP라는 것을 알려주는 Annotation이다.
+- @Around: 공통기능을 기능 전후에 모두 실행할 때 사용한다.
+  - execution: 실행
+  - 리턴타입: execution(*)에서 *, 이 경우는 모든 타입
+  - com.example.demo.controller.*Controller.*(..)): com.example.demo.controller.*Controller 하위의 모든 class method에 대해서 적용된다.
+  - joinPoint.proceed(): 공통기능 실행
+
+```xml
+@Component 
+@Aspect 
+public class LoggerAspect { 
+	// 공통 기능 구현부
+	@Around("execution(* com.example.demo.controller.*Controller.*(..))") 
+	public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable { 
+		log.info("Before Execute Method!!!"); 
+		Object proceed = joinPoint.proceed(); 
+		log.info("After Execute Method!!!!"); 
+		return proceed; 
+	}
+}
+```
+
+
+
+<br>
+
+<br>
+
+
+
+# POJO란
+
+### POJO = Java Beans
+
+* 여기서 Java Beans는 Sun의 Java Beans나 EJB의 Bean을 뜻하는것이 아닌 순수하게 setter, getter 메소드로 이루어진 Value Object성의 Bean을 말한다.
+* 특별한 제한에 종속되지 않고, 클래스 패스(class path)를 필요로 하지 않는 일반적인 Java Object를 의미합니다.
+* "POJO"라는 용어는 주요 Java 오브젝트 모델, 컨벤션 또는 프레임워크를 따르지 않는 '순수한' Java 오브젝트를 나타낸다.
+
+
+
+<br>
+
+
+
+### POJO가 Bean이라면 왜 굳이 다르게 부르는가?
+
+Beans라는 용어로 위의 깡통 빈 클래스를 정의하기에는 Java Beans나 EJB의 Beans와 구분이 모호하고 또한 Beans라는 용어로 정의되는 여타 다른 개념들과의 확실한 분리를 위해 POJO라는 용어를 사용한다.
+
+Java Beans는 특별한 POJO의 변형이라고 볼 수 있다. 더 세부적인 규약이 정해져있고, 이를 지켜야한다.
+
+
+
+<br>
+
+
+
+### 장점
+
+자바의 객체지향적인 특징을 살려 비즈니스 로직에 충실한 개발이 가능하다.
+
+<br>
+
+<br>
 
 
 
@@ -242,17 +404,23 @@ Bean이란
 Container란
 
 * https://ibocon.tistory.com/122
-* 
 
 IOC(Inversion of Control, 제어의 역전)란
 
 MVC 패턴이란
 
+* https://m.blog.naver.com/jhc9639/220967034588
+* https://velog.io/@arielgv829/Spring-SpringMVC-SpringBoot
+
 DI(Dependency Injection, 의존성 주입)란
+
+* https://gmlwjd9405.github.io/2018/11/09/dependency-injection.html
 
 AOP(Aspect Oriented Programming)란
 
 POJO
+
+* https://velog.io/@dion/what-is-POJO
 
 DAO와 DTO의 차이
 
