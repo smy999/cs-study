@@ -6,7 +6,7 @@
 * [Container란](#Container란)
 * [IoC(Inversion of Control, 제어의 역전)란](#IOC란)
 * [MVC 패턴이란](#MVC-패턴이란)
-* [DI(Dependency Injection, 의존성 주입)란](#DIDependency-Injection-의존성 주입란)
+* [DI(Dependency Injection, 의존성 주입)란](#DIDependency-Injection-의존성-주입란)
 * [AOP(Aspect Oriented Programming)란](#AOPAspect-Oriented-Programming란)
 * [POJO란](#POJO란)
 * [DAO와 DTO의 차이](#DTO와-DAO의-차이)
