@@ -5,11 +5,11 @@
 * [Bean이란](#Bean이란)
 * [Container란](#Container란)
 * [IoC(Inversion of Control, 제어의 역전)란](#IOC란)
-* MVC 패턴이란
-* DI(Dependency Injection, 의존성 주입)란
-* AOP(Aspect Oriented Programming)란
-* POJO란
-* DAO와 DTO의 차이
+* [MVC 패턴이란](#MVC-패턴이란)
+* [DI(Dependency Injection, 의존성 주입)란](#DIDependency-Injection-의존성 주입란)
+* [AOP(Aspect Oriented Programming)란](#AOPAspect-Oriented-Programming란)
+* [POJO란](#POJO란)
+* [DAO와 DTO의 차이](#DTO와-DAO의-차이)
 * Spring JDBC를 이용한 데이터 접근
 * Filter와 Interceptor 차이
 
@@ -277,10 +277,12 @@ Container가 Bean 객체를 생성한 후, 종속성을 주입한다.
 
 1. Contructor Injection: 생성자를 통한 전달
    <constructor-arg ref="cat"></constructor-arg>
+
 2. Method(Setter) Injection: setter() method를 이용한 전달
    <property name="myName" value="poodle"></property>
+
 3. Field Injection: 멤버 변수를 통한 전달
-   
+
    
 
 <br>
@@ -289,7 +291,7 @@ Container가 Bean 객체를 생성한 후, 종속성을 주입한다.
 
 
 
-# AOP?
+# AOP(Aspect Oriented Programming)란
 
 ##### Aspect Oriented Programming
 
@@ -381,6 +383,55 @@ Java Beans는 특별한 POJO의 변형이라고 볼 수 있다. 더 세부적인
 
 
 
+
+
+# DTO와 DAO의 차이
+
+* DTO(Data Tranfer Object): 특정 테이블의 정보를 레코드 단위로 정의한 Class
+* DAO(Data Access Object): 데이터베이스에 접속하고 명령을 전송하는 Class
+
+
+
+### DTO(Data Tranfer Object)
+
+계층간 데이터를 교환하는 Java Beans이다.
+
+데이터베이스 레코드의 데이터를 매핑하기 위한 데이터 객체를 의미한다.
+
+DTO는 보통 로직을 갖지 않으며, data와 그 data의 접근을 위한 Getter와 Setter만을 가진다.
+
+결국, 데이터베이스에서 data를 얻어 Service 혹은 Controller에 보내는 역할을 하는 것이 DTO이다.
+
+VO라고도 표현하기도 한다. 하지만 둘은 차이점이 있다. VO는 값 객체로서 값을 위해 쓰인다. 자바는 값의 형을 표현하기 위해 불편 클래스를 만들어서 사용하는데, 불변은 Read-Only라는 특징을 갖는다. 반면, 넣어진 데이터를 Getter를 통해 사용한다는 공통점이 있다.
+
+
+
+### DAO(Data Access Object)
+
+데이터베이스의 data에 접근하기 위한 객체이다.
+
+데이터베이스 접근을 위한 로직과 비즈니스 로직을 분리하기 위해 사용한다.
+
+사용자는 자신이 필요한 Interface를 DAO에게 던지고 DAO는 이 Interface를 구현한 객체를 사용자에게 편라히게 사용할 수 있도록 반환한다.
+
+DAO는 데이터베이스와 연결하는 Connectin까지 설정되어 있는 경우가 대부분이다.
+
+예를들어 MyBatis 등을 사용하는 경우 커넥션풀까지 제공하기 때문에 DAO를 별도로 만드는 경우는 드물다.
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+
+
 ## 참고자료
 
 Spring Framework란
@@ -423,6 +474,9 @@ POJO
 * https://velog.io/@dion/what-is-POJO
 
 DAO와 DTO의 차이
+
+* https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=godwings&logNo=221048712980
+* https://m.blog.naver.com/cjhol2107/221757079506
 
 Spring JDBC를 이용한 데이터 접근
 
