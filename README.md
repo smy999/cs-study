@@ -50,15 +50,15 @@
 | ------ | ------ | ------ | ------ |
 | `필수` | :white_check_mark: | Spring Framework란 |  |
 | `필수` | :white_check_mark: | Spring, Spring MVC, Spring Boot의 차이 |  |
-| `필수` | :white_large_square: | Bean이란 |  |
-| `필수` | :white_large_square: | Container란 |  |
-| `필수` | :white_large_square: | IOC(Inversion of Control, 제어의 역전)란 |  |
-| `필수` | :white_large_square: | MVC 패턴이란 |  |
-| `필수` | :white_large_square: | DI(Dependency Injection, 의존성 주입)란 |  |
-| `필수` | :white_large_square: | AOP(Aspect Oriented Programming)란 |  |
-| `필수` | :white_large_square: | POJO |  |
-| `필수` | :white_large_square: | DAO와 DTO의 차이 |  |
-| `필수` | :white_large_square: | Spring JDBC를 이용한 데이터 접근 |  |
+| `필수` | :white_check_mark: | Bean이란 |  |
+| `필수` | :white_check_mark:| Container란 |  |
+| `필수` | :white_check_mark: | IOC(Inversion of Control, 제어의 역전)란 |  |
+| `필수` | :white_check_mark: | MVC 패턴이란 |  |
+| `필수` | :white_check_mark: | DI(Dependency Injection, 의존성 주입)란 |  |
+| `필수` | :white_check_mark: | AOP(Aspect Oriented Programming)란 |  |
+| `필수` | :white_check_mark: | POJO |  |
+| `필수` | :white_check_mark: | DAO와 DTO의 차이 |  |
+| `필수` | :white_check_mark: | Spring JDBC를 이용한 데이터 접근 |  |
 | `필수` | :white_large_square: | Filter와 Interceptor 차이 |  |
 
 <br>
