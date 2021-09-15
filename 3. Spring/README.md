@@ -10,7 +10,7 @@
 * [AOP(Aspect Oriented Programming)란](#AOPAspect-Oriented-Programming란)
 * [POJO란](#POJO란)
 * [DAO와 DTO의 차이](#DTO와-DAO의-차이)
-* Spring JDBC를 이용한 데이터 접근
+* [Spring JDBC를 이용한 데이터 접근](#Spring-JDBC를-이용한-데이터-접근)
 * Filter와 Interceptor 차이
 
 
@@ -176,8 +176,11 @@ Bean의 생성과 관계, 사용, 생명 주기 등을 관장
 Annotaion 만 남겨주면 Container 가 개발자가 원하는 상황에 코드를 실행
 (= 메서드가 언제, 어디서 호출되어야 하는지 그리고 메서드를 호출하기 위해 필요한 매개 변수를 준비해서 Container 가 개발자 대신 알아서 호출)
 
+
+
 <br>
 <br>
+
 
 
 # IoC란
@@ -420,6 +423,182 @@ DAO는 데이터베이스와 연결하는 Connectin까지 설정되어 있는 �
 
 
 
+<br>
+
+<br>
+
+
+
+# Spring JDBC를 이용한 데이터 접근
+
+### JDBC란
+
+Java Database Connectivity의 약자로, DB에 접근할 수 있도록 Java에서 제공하는 API
+
+JDBC는 데이터베이스에서 데이터를 Query하거나, Update라는 방법을 제공한다.
+
+JDBC의 문제점
+
+* Query 실행 선후에 많은 code를 작성해야 한다. (Connection 생성, 명령문, ResultSet Close, ...)
+* 데이터베이스 로직에서 예외처리 코드를 수행해야 한다.
+* Transaction을 처리해야 한다.
+* 위 과정을 매번 반복해야해서 시간이 낭비된다.
+
+
+
+<br>
+
+
+
+### Spring JDBC란
+
+![spring_SpringJDBC_structure](https://user-images.githubusercontent.com/33407191/133476658-f754582c-6ea6-482b-ae1a-4d4c6475403c.png)
+
+Spring에서 제공하는 JDBC의 장점을 살리고 단점은 보완하는 간결한 형태의 API
+
+JDBC API에서 제공하지 않는 편리한 기능들도 제공하며, 반복적인 작업들을 대신 해준다.
+
+Spring JDBC 사용하려면?
+
+* 실행할 SQL과 바인딩 할 파라미터를 넘겨주거나, query 실행 결과를 어떤 객체에 넘겨 받을지를 결정하면된다. (= 간편한다.)
+* Spring JDBC를 사용하기 위해서는 DB Connection을 가져오는 DataSource를 Bean으로 등록해야 한다.
+
+
+
+<br>
+
+
+
+### Spring JDBC의 역할
+
+![spring_SpringJBDCPackage_structure](https://user-images.githubusercontent.com/33407191/133476724-ba4e7060-5700-4216-b3df-7a263ae18a7b.png)
+
+Spring JDBC는 JDBC의 저수준 처리를 Spring Framework에 위임하여 반복되는 처리를 개발자에게 맡지기 않고 데이터베이스에 대한 작업을 수행한다.
+
+* Connection
+  * Connection과 관련된 모든 작업을 Spring JDBC가 필요한 시점에서 알아서 진행한다. (연결 객체 생성 및 종료)
+
+* Statement
+  * SQL 정보가 담긴 Statement 또는 PreparedStatement를 생성하고 필요한 준비 작업을 해준다. (준비)
+  * SQL이 담긴 Statement를 실행하는 것도 Spring JDBC가 해준다. (실행)
+  * Statement의 실행 결과는 다양한 형태로 가져올 수 있다. (반환 값 가져오기 및 종료)
+* ResultSet
+  * ResultSet Loop처리: ResultSet에 담긴 쿼리 샐행 결과가 한 건 이상이면 ResultSet 루프를 만들어서 반복해주는 것도 Spring JDBC가 해준다. (처리 및 종료)
+* Exception 처리와 반환
+  * JDBC 작업 중 발생하는 모든 예외는 Spring JDBC예외 변환기가 처리.
+  * Checked Exception인 SQLException을 Runtime Exception인 DataAccessException 타입으로 변환
+* Transaction
+  * Spring JDBC를 사용하면 transaction과 관련된 모든 작업(Commit, Rollback 등)에 대해서는 신경 쓰지 않아도 됨.
+
+
+
+<br>
+
+
+
+### JDBC Template
+
+Spring JDBC가 제공하는 클래스 중 JDBC Template은 JDBC의 모든 기능을 최대한 활용할 수 있는 유연성을 제공하는 클래스다. (내부적으로 JDBC API를 사용한다.) 위 Connection, Statement, ResultSet, exception, Transaction 기능을 수행할 수 있게하는 클래스이다.
+
+* 클래스 생성
+
+  ```
+  JdbcTemplate template = new JdbcTemplate(dataSource);
+  ```
+
+  
+
+<br>
+
+
+
+### JDBC Driver 란
+
+JDBC Driver는 자바 프로그램의 요청을 DBMS가 이해할 수 있는 프로토콜로 변환해주는 클라이언트 사이드 어댑터이다.
+
+DB마다 Driver가 존재하므로, 자신이 사용하는 DB에 맞는 JDBC Driver를 사용한다.
+
+DataSource를 JDBC Template에 주입(Dependency Injection)시키고 JDBC Template은 JDBC Driver를 이용하여 DB에 접근한다.
+
+
+
+<br>
+
+
+
+### DataSource란
+
+DataSource는 JDBC 명세의 일부분이면서 일반화된 연결 팩토리이다. 즉 DB와 관계된 connection 정보를 담고 있으며, bean으로 등록하여 인자로 넘겨준다. 이 과정을 통해 Spring은 DataSource로 DB와의 연결을 획득한다.
+
+* DataSource는 JDBC Driver Vender(MySQL, Oracle, ...) 별로 여러가지가 존재한다.
+* DataSource 다음과 같은 역할을 수행한다.
+  1. DB Server 연결
+  2. DB Connection Pooling
+  3. Transaction 처리
+
+* DataSource 설정 및 Bean 등록/주입
+
+  1. [jdbc.properties] DB Server에 대한 정보(Property)를 설정한다. 
+
+  ```
+  jdbc.driver = com.mysql.jdbc.Driver
+  jdbc.url = jdbc:mysql//localhost:3306/databaseName
+  jdbc.username = root
+  jdbc.password = password
+  ```
+
+  2. [beans.xml] Property File의 위치와 반드시 필요한 Parameter를 설정한 후, 해당 DataSource를 Bean으로 설정한다.
+
+  ```
+  # 정보를 적어둔 곳에서 내용만 고치면 다른 모든 부분에서 변경된 내용이 적용된다.
+  # 예를 들어, Parameter 정보들을 적어둔 Property file에서 특정 정보를 수정하면 변경된 정보가 placeholder를 통해 ${jdbc.password}에 주입된다.
+  <context:property-placeholder location="com/spring/props/jdbc.properties"/>
+  
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+  </bean>
+  ```
+
+  3. id="dataSource"를 통해 이후 Spring JDBC에 주입한다.
+
+<br>
+
+
+
+### DB Connection Pooling이란?
+
+Java 프로그램에서 데이터베이스에 연결(Connection 객체를 얻는 작업)은 시간(비용)이 많이 걸린다.만약, 일정량의 Connection을 미리 생성시켜 저장소에 저장했다가 프로그램에서 요청이 있으면 저장소에서 Connection 꺼내 제공한다면(재사용) 시간을 절약할 수 있다. 이러한 프로그래밍 기법을 Connection Pooling이라 한다. Connection Pooling을 이용하면 속도와 퍼포먼스가 좋아진다.
+
+* Connection Pool의 관리자
+  * Connection Pool에서 객체를 관리하는 관리자가 필요한데, 이를 DataSource가 수행한다. DataSource 객체는 DB에 연결된 Connection 객체를 Pool에서 가져오고, 다시 반납하는 작업을 수행한다.
+
+
+
+
+
+<br>
+
+
+
+### Spring 프로젝트에서 DB 프로그래밍을 위해 필요한 Library
+
+1. [jdbc class: spring-jdbc] org.springframework.jdbc.core.JdbcTemplate
+2. [data source: commons-dbcp] org.apache.commons.dbcp.BasicDataSource
+3. [jdbc driver: mysql-connector-java] com.mysql.jdbc.Driver
+
+* 위 라이브러리를 dependency를 통해 설정한다.
+
+
+
+<br>
+
+
+
+
+
 
 
 
@@ -479,5 +658,9 @@ DAO와 DTO의 차이
 * https://m.blog.naver.com/cjhol2107/221757079506
 
 Spring JDBC를 이용한 데이터 접근
+
+* https://gmlwjd9405.github.io/2018/05/15/setting-for-db-programming.html
+* https://juntcom.tistory.com/2
+* http://javainsimpleway.com/connection-pool-overview/
 
 Filter와 Interceptor 차이
