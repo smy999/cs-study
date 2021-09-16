@@ -11,7 +11,7 @@
 * [POJO란](#POJO란)
 * [DAO와 DTO의 차이](#DTO와-DAO의-차이)
 * [Spring JDBC를 이용한 데이터 접근](#Spring-JDBC를-이용한-데이터-접근)
-* Filter와 Interceptor 차이
+* [Filter와 Interceptor 차이](#Filter와-Interceptor-차이)
 
 
 
@@ -296,9 +296,29 @@ Container가 Bean 객체를 생성한 후, 종속성을 주입한다.
 
 # AOP(Aspect Oriented Programming)란
 
-##### Aspect Oriented Programming
+**Aspect Oriented Programming**
 
-##### 여러곳에 흩여저 있는 공통 기능을 한곳에 모아서 관리하자.
+**여러곳에 흩여저 있는 공통 기능을 한곳에 모아서 관리하자.**
+
+OOP를 보완하기 위해 나온 개념으로, 객체 지향의 프로그래밍을 했을 때 중복을 줄일 수 없는 부분을 줄이기 위해 종단면(관점)에서 바라보고 처리한다.
+
+주로 '로깅', '트랜잭션', '에러 처리'등 비즈니스단의 메서드에서 조금 더 세밀하게 조정하고 싶을 때 사용한다.
+
+<br>
+
+
+
+### AOP의 Point Cut
+
+@Before: 대상 메서드의 수행 전
+
+@After: 대상 메서드의 수행 후
+
+@After-returning: 대상 메서드의 정상적인 수행 후
+
+@After-throwing: 예외발생 후
+
+@Around: 대상 메서드의 수행 전/후
 
 
 
@@ -531,7 +551,9 @@ DataSource를 JDBC Template에 주입(Dependency Injection)시키고 JDBC Templa
 DataSource는 JDBC 명세의 일부분이면서 일반화된 연결 팩토리이다. 즉 DB와 관계된 connection 정보를 담고 있으며, bean으로 등록하여 인자로 넘겨준다. 이 과정을 통해 Spring은 DataSource로 DB와의 연결을 획득한다.
 
 * DataSource는 JDBC Driver Vender(MySQL, Oracle, ...) 별로 여러가지가 존재한다.
+
 * DataSource 다음과 같은 역할을 수행한다.
+
   1. DB Server 연결
   2. DB Connection Pooling
   3. Transaction 처리
@@ -595,13 +617,175 @@ Java 프로그램에서 데이터베이스에 연결(Connection 객체를 얻는
 
 <br>
 
+<br>
 
 
 
+# Filter와 Interceptor 차이
+
+공통으로 처리해할 업무들은 예를들어 로그인 관련(세션체크)처리, 권한체크, XSS(Cross site script)방어, pc와 모바일웹의 분기처리, 로그, 페이지 인코딩 변환 등이 있다.
+
+공통업무에 관련된 코드를 모든 페이지 마다 작성 해야한다면 중복된 코드가 많아지고, 프로젝트 단위가 커질수록 서버에 부하를 줄 수도있으며, 소스 관리도 되지 않는다. 따라서, **공통 부분은 빼서 따로 관리하는게 좋다.**
+
+Spring은 공통적으로 여러 작업을 처리함으로써 중복된 코드를 제거할 수 있도록 많은 기능들을 지원하고 있다. 그 기능들에 Filter와 Interceptor 그리고 AOP가 있다.
 
 
 
+<br>
 
+
+
+### Web Context & Spring Context
+
+![spring_Web_Spring_Context](https://user-images.githubusercontent.com/33407191/133654365-95d08e15-a26f-473a-8b2e-8808cc99c755.png)
+
+* Interceptor와 Filter는 Servlet 단위에서 실행된다. 반면 AOP는 메소드 앞에 Proxy패턴의 형태로 실행된다.
+
+* 요청이 들어오면 Filter → Interceptor → AOP → Interceptor → Filter 순으로 거치게 된다.
+  1. 서버를 실행시켜 서블릿이 올라오는 동안에 init이 실행되고, 그 후 doFilter가 실행된다. 
+  2. 컨트롤러에 들어가기 전 preHandler가 실행된다
+  3. 컨트롤러에서 나와 postHandler, after Completion, doFilter 순으로 진행이 된다.
+  4. 서블릿 종료 시 destroy가 실행된다.
+
+
+<br>
+
+
+
+### Filter
+
+Filter는 J2EE표준 스펙 기능으로 Dispatcher Servlet에 요청이 전달되기 전/후에 url 패턴에 맞는 모든 요청에 대해 부가작업을 처리할 수 있는 기능을 제공한다.
+
+Spring Container가 아닌 Tomcat과 같은 Web Container 의해 관리가 되므로 Dispatcher Servlet으로 가기 전에 요청을 처리한다.
+
+
+
+* Filter의 역할
+  * 말그대로 요청과 응답을 거른뒤 정제
+  * Servlet Filter는 DispatcherServlet 이전에 실행이 되는데 filter가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나, 여러가지 체크를 수행할 수 있다.
+  * 또한 자원의 처리가 끝난 후 응답내용에 대해서도 변경하는 처리를 할 수가 있다.
+  * 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS방어 등의 요청에 대한 처리로 사용된다.
+
+
+
+* Filter Interface 구현 예시
+
+```
+public interface Filter { 
+	// init(): 필터 인스턴스 초기화
+	public default void init(FilterConfig filterConfig) throws ServletException {} 
+	
+	// doFilter(): 전/후 처리
+  public void doFilter(ServletRequest request, ServletResponse response, 
+  										FilterChain chain) throws IOException, ServletException; 
+
+	// destroy(): 필터 인스턴스 종료
+	public default void destroy() {} 
+}
+```
+
+
+
+* Filter Method
+
+
+| 메소드     | 설명                                                         |
+| ---------- | ------------------------------------------------------------ |
+| init()     | - Filter 객체를 초기화하고 서비스에 추가하기 위한 메소드이다.<br>- Web Container가 1회 init 메소드를 호출하여 filter 객체를 초기화하면 이후의 요청들은 doFilter를 통해 전/후에 처리된다. |
+| doFilter() | - url-pattern에 맞는 모든 HTTP 요청이 DispatcherServelet으로 전달되기 전/후에 Web Container에 의해 실행되는 메소드<br>- doFilter의 파라미터로는 FilterChain이 있는데, FilterChain의 doFilter 통해 다음 대상으로 요청을 전달하게 된다. |
+| destroy()  | - 필터 객체를 서비스에서 제거하고 사용하는 자원을 반환하기 위한 메소드<br>- Web Container에 의해 1번 호출되며 이후에는 더이상 doFilter에 의해 처리되지 않는다. |
+
+
+
+* Filter 사용처
+  * 보안 관련 공통 작업(= Spring과 무관하게 전역적으로 처리하는 작업에 사용)
+  * 모든 요청에 대한 로깅 또는 감사
+  * 이미지/데이터 압축 및 문자열 인코딩(= 웹 애플리케이션에 전반적으로 사용되는 기능 구현)
+
+
+
+<br>
+
+
+
+### Interceptor
+
+Interceptor는 J2EE 표준 스펙인 필터(Filter)와 달리 Spring이 제공하는 기술로써, Dispatcher Servlet이 Controller를 호출하기 전과 후에 요청과 응답을 참조하거나 가공할 수 있는 기능을 제공한다.
+
+Web Container에서 동작하는 Filter와 달리 Interceptor는 Spring Context에서 동작한다.
+
+
+
+* Interceptor 역할
+  * Interceptor는 Spring의 DistpatcherServlet이 Controller를 호출하기 전/후로 끼어들기 때문에 Spring Context 내부에서 Controller(Handler)에 관한 요청과 응답에 대해 처리한다.
+  * Spring의 모든 Bean 객체에 접근 가능하다.
+  * Interceptor는 여러 개를 사용할 수 있고 로그인 체크, 권한체크, 프로그램 실행시간 계산작업 로그확인 등의 업무처리를 수행한다.
+
+
+
+* Interceptor Interface 구현 예시
+
+```
+public interface HandlerInterceptor { 
+	// preHandler(): Controller 메서드가 실행되기 전
+	default boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { 
+		return true; 
+	} 
+	
+	// postHanler(): Controller 메서드 실행 직후, View 페이지 rendering 전
+	default void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception { } 
+	
+	// afterCompletion(): View 페이지 rendering 된 후
+	default void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception { } 
+}
+```
+
+
+
+* Interceptor Method
+
+
+| 메소드            | 설명                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| preHandle()       | - Controller가 호출되기 전에 실행된다.<br>때문에 Controller 이전에 처리해야 하는 전처리 작업이나 요청 정보를 가공하거나 추가하는 경우에 사용할 수 있다.<br>- preHandle의 3번째 파라미터인 handler는 HandlerMapping이 찾아준 Controller Bean에 매핑되는 HandlerMethod라는 새로운 타입의 객체로써, @RequestMapping이 붙은 메소드의 정보를 추상화한 객체다. |
+| postHandle()      | - Controller를 호출한 후에 실행된다.<br>- 때문에 Controller 이후에 처리해야 하는 후처리 작업이 있을 때 사용한다.<br>- 이 메소드에는 컨트롤러가 반환하는 ModelAndView 타입의 정보가 제공되는데, 최근에는 Json 형태로 데이터를 제공하는 RestAPI 기반의 컨트롤러(@RestController)를 만들면서 자주 사용되지는 않는다. |
+| afterCompletion() | - 이름 그대로 모든 View에서 최종 결과를 생성하는 일을 포함해 모든 작업이 완료된 후에 실행된다.<br>- 요청 처리 중에 사용한 리소스를 반환할 때 사용한다. |
+
+
+
+* Interceptor 사용처
+  * 인증/인가 등과 같은 공통 작업(= 클라이언트 요청과 관련되어 전역적으로 처리해야하는 작업)
+  * API 호출에 대한 로깅 또는 감사
+  * Controller로 넘겨주는 정보(데이터)의 가공(= 해당 객체가 내부적으로 갖는 값은 조작할 때 사용, Filter와 다르게 HttpServletRequest나 HttpServletResponse 등과 같은 객체를 제공받으므로 객체 자체를 조작할 수는 없다.)
+
+
+
+<br>
+
+
+
+### Filter vs Interceptor
+
+
+| 대상                               | Filter        | Interceptor      |
+| ---------------------------------- | ------------- | ---------------- |
+| 관리되는 Container                 | Web Container | Spring Container |
+| Request/Response<br>조작 가능 여부 | YES           | No               |
+
+
+
+<br>
+
+
+
+### Interceptor vs AOP > 그냥 다 이해못함ㅋ
+
+Interceptor 대신에 Controller들에 적용할 부가 기능을 Advise로 만들어 AOP(Aspect Oriented Programming, 관점 지향 프로그래밍)를 적용할 수도 있다. 하지만 다음과 같은 이유들로 Controller의 호출 과정에 적용되는 부가기능들은 Interceptor를 사용하는 편이 낫다.
+
+1. Spring의 Controller는 타입과 실행 메소드가 모두 제각각이라 Point Cut(적용할 메소드 선별)의 작성이 어렵다.
+2. Spring의 Controller는 파라미터나 리턴 값이 일정하지 않다.
+
+즉, 타입이 일정하지 않고 호출 패턴도 정해져 있지 않기 때문에 Controller에 AOP를 적용하려면 번거로운 부가 작업들이 생기게 된다.
 
 
 
@@ -664,3 +848,6 @@ Spring JDBC를 이용한 데이터 접근
 * http://javainsimpleway.com/connection-pool-overview/
 
 Filter와 Interceptor 차이
+
+* https://mangkyu.tistory.com/173
+* https://goddaehee.tistory.com/154
