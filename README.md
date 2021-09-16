@@ -59,7 +59,7 @@
 | `필수` | :white_check_mark: | POJO |  |
 | `필수` | :white_check_mark: | DAO와 DTO의 차이 |  |
 | `필수` | :white_check_mark: | Spring JDBC를 이용한 데이터 접근 |  |
-| `필수` | :white_large_square: | Filter와 Interceptor 차이 |  |
+| `필수` | :white_check_mark: | Filter와 Interceptor 차이 |  |
 
 <br>
 
