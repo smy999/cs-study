@@ -63,6 +63,19 @@
 
 <br>
 
+
+## 4. 디자인 패턴의 개념과 종류
+
+| 구분 | 진행상태 | 네트워크 | 비고 |
+| ------ | ------ | ------ | ------ |
+| `필수` | :white_large_square: | Singleton 패턴 |  |
+| `필수` | :white_large_square: | Strategy 패턴 |  |
+| `필수` | :white_large_square: | Template Method 패턴 |  |
+| `필수` | :white_large_square:| Factory Method 패턴 |  |
+| `필수` | :white_large_square: | MVC1 패턴과 MVC2 패턴 |  |
+
+<br>
+
 ## Big Data
 | 구분 | 진행상태 | 빅데이터 | 비고 |
 | ------ | ------ | ------ | ------ |
