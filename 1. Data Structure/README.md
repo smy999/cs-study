@@ -33,14 +33,15 @@
 
 ### 3. 장단점
 
-| 장점         | 단점         |
-| ----------- | ----------- |
-| index로 data에 빠르게 접근할 수 있다. | 배열 내의 데이터 이동이 어렵다. 중간에 삽입할 경우 삽입 위치 이후의 모든 원소를 한칸씩 뒤로 밀어야 한다. |
+| 장점                                    | 단점                                                         |
+| --------------------------------------- | ------------------------------------------------------------ |
+| index로 data에 빠르게 접근할 수 있다.   | 배열 내의 데이터 이동이 어렵다. 중간에 삽입할 경우 삽입 위치 이후의 모든 원소를 한칸씩 뒤로 밀어야 한다. |
 | 연속된 메모리 공간으로 관리가 편리하다. | 연속된 메모리 공간으로 중간 데이터가 삭제되는 메모리가 낭비되는 문제가 발생한다. |
-|  | 크기 변경이 불가능하다. 이후 새로운 데이터를 추가할 수 없어 새로운 배열을  생성한 후 기존 값을 복사해야 한다. |
+|                                         | 크기 변경이 불가능하다. 이후 새로운 데이터를 추가할 수 없어 새로운 배열을  생성한 후 기존 값을 복사해야 한다. |
 
 
 ### 4. 사용법(Java)
+
 ```
 // 선언과 함께 초기화
 int[] arr = {1, 2, 3, 4};
@@ -72,17 +73,45 @@ for(int i = 0; i < arr2.length(); i++) {
 - 하나의 link에 4byte를 차지하며, double LinkedList는 8byte를 차지한다.
 
 
+
+<br>
+
+
+
+
 ### 2. 구조
 
 ```
-[    Head     ]--->[     Node    ]    [     Node    ]    [     Node    ]    [     Node    ]
-                   [Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]--->[Data][Pointer]--->[    Tail     ]
+[    Head     ]--->[Data][Pointer]--->[Data][Pointer]--->[    Tail     ]
 ```
+
+![datastructure_linkedlist](https://user-images.githubusercontent.com/33407191/133926712-258dd244-89b7-4a11-b3c1-ff1a84a285a7.png)
+
 - Node: 데이터 저장 단위
 - Data: 실제 data를 저장하는 곳
 - Pointer(Link): 다음 node의 연결 정보를 저장하는 공간으로 다음 node의 주소값을 가진다.
 - Head: LinkedList의 첫 node를 가리킨다.
 - Tail: LinkedList의 마지막 node로 Null을 값을 가진다.
+
+
+
+<br>
+
+
+
+### 4. 종류
+
+| 구분                                   | 내용                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| 단일 연결 리스트(Singly Linked List)   | - 각 노드가 다음 노드에 대해서만 참조하는 가장 단순한 형태의 연결 리스트<br>- 일반적인 큐를 구현 시 사용<br>- Head 노드를 잃어버려 참조하지 못하는 경우 데이터 전체를 사용 못하게 되는 단점이 있다.<br>- FAT 파일 시스템이 단일 연결 리스트로 파일 청크(동적 메모리로 할당되는 영역)를 연결한다. |
+| 이중 연결 리스트(Doubly Linked List)   | - 각 노드가 이전 노드, 다음 노드에 대해서 참조하는 형태의 연결 리스트<br>- 삭제가 간편하며 단일 연결 리스트에 비해 데이터 손상에 강하지만, 관리할 참조가 2개이기 때문에 삽입이나 정렬의 경우 작업량이 더 많아진다. |
+| 원형 연결 리스트(Circular Linked List) | - 연결 리스트에서 마지막 요소가 첫번째 요소를 참조한다.<br>- 스트림 버퍼의 구현에 많이 사용된다. |
+
+
+
+<br>
+
+
 
 
 ### 3. 시간 복잡도
@@ -92,16 +121,24 @@ for(int i = 0; i < arr2.length(); i++) {
 - 탐색: O(n)
 
 
+
+<br>
+
+
+
+
 ### 4. 장단점
 
-| 장점         | 단점         |
-| ----------- | ----------- |
+| 장점                                                         | 단점                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | data의 삽입/삭제가 편리하다.(해당 부분의 연결을 끊고 새로운 노드에 연결한 후 다음 노드와 연결해준다.) | 특정 데이터를 검색할 때 index로 접근하지 않기 때문에 처음부터 끝까짓 순회하여 시간이 오래걸린다. |
-| 논리적 순서를 갖는 특정으로 메로리를 효율적으로 사용할 수 있다. | Pointer를 저장하는 메모리 공간이 추가적으로 필요하다. |
-| 동적으로 메모리를 할당하여 선언 시 크기를 정하지 않아도 된다. (크기 변경이 가능하다.) | 구현이 어렵다. |
+| 논리적 순서를 갖는 특정으로 메로리를 효율적으로 사용할 수 있다. | Pointer를 저장하는 메모리 공간이 추가적으로 필요하다.        |
+| 동적으로 메모리를 할당하여 선언 시 크기를 정하지 않아도 된다. (크기 변경이 가능하다.) | 구현이 어렵다.                                               |
+
 
 
 ### 5. 사용법(Java)
+
 ```
 // 선언
 LinkedList list = new LinkedList();           // 타입이 없는 선언
@@ -133,13 +170,25 @@ list.contains();    // return: boolean
 list.indexOf();     // return: index, -1
 ```
 
+
+
+<br>
+
+
+
 ### 6. 사용처
+
 - 추가와 삭제가 많은 경우에는 Array보다는 LinkedList를 사용한다.
 - 대용량 데이터 처리에 적합하다.
 - 크기가 정해지지 않은 경우에 사용한다.
 
 
+
 <br>
+
+<br>
+
+
 
 
 # HashTable
@@ -154,6 +203,7 @@ list.indexOf();     // return: index, -1
 
 
 ### 2. 구조
+
 - Key: 길이가 일정하지 않은 Hash 함수의 입력값.
 - Hash Function: key를 hast로 변경하는 역할. 일정하지 않은 길이를 가진 key를 일정하게 만들어 저장소를 효율적으로 관리할 수 있다. 하지만 다른 문자열의 hasing 결과가 같아서 발생하는 hash collision이 발생할 수 있어서 hash 함수를 만들 때 충돌을 최소화하는 방법을 찾아야한다.
 - Hash: Hash Function의 결과값. 저장소(bucket과 slot)에서 value와 매칭되어 저장된다.
@@ -168,19 +218,21 @@ list.indexOf();     // return: index, -1
 
 ### 4. 장단점
 
-| 장점         | 단점         |
-| ----------- | ----------- |
-|  |  |
-|  |  |
-|  |  |
+| 장점 | 단점 |
+| ---- | ---- |
+|      |      |
+|      |      |
+|      |      |
 
 <br>
 
 <hr>
 
+
 저번주 내용 skipㅎ 나중에 할게요
 
 <hr>
+
 
 
 <br>
@@ -191,6 +243,7 @@ list.indexOf();     // return: index, -1
 또는 Binary Heap
 
 ### 1.  개념
+
 * tree 기반 자료구조로 heap 속성을 만족하는 완전한 트리
 * heap 속성?
   * 큰 값은 상위, 작은 값은 하위에 위치하는 구조(혹은 반대)로, 부모 노드의 값이 자식 노드의 값보다 항상 크(작)다. 
@@ -209,12 +262,14 @@ list.indexOf();     // return: index, -1
 
 
 ### 2. 충족 조건
+
 * Shape Property: 완전이진트리를 유지해야 한다.
 * Heap Property: 부모의 우선순위가 자식의 우선순위보다 높아야 한다.
 * Node 개수: ```2^h-1 < n <= 2^(h+1)-1```를 지켜한다.
 
 
 ### 3. 종류
+
 * Max Heap: 우선순위가 높을수록(Root에 가까워질수록) Node의 Value값이 더 크다.
 
   ![min heap](https://user-images.githubusercontent.com/33407191/126661525-2df5acd2-0c2b-485a-82c9-8ce7d676cb73.png)
@@ -225,6 +280,7 @@ list.indexOf();     // return: index, -1
 
 
 ### 4. 연산
+
 * 삽입(Percolate-Up)
   1. 원소를 heap의 가장 마지막 node에 추가한다.
   2. 추가한 원소를 부모와 비교하며 순서가 heap 조건과 일치할 때까지 부모 node와 위치를 바꾼다.
@@ -236,6 +292,7 @@ list.indexOf();     // return: index, -1
 
 
 ### 5. 시간 복잡도
+
 * 삽입/삭제 : O(1)
 * 삽입/삭제 후 heapify하게 만드는 시간: O(logn)
 * 총 시간 복잡도: O(1)\*O(logn)
@@ -435,21 +492,26 @@ Red-Black Tree를 만들어보자. node를 추가하다가 Double Red가 생긴�
 ## 참고자료
 
 Array
+
 - https://velog.io/@choiiis/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EB%B0%B0%EC%97%B4Array%EA%B3%BC-%EB%A6%AC%EC%8A%A4%ED%8A%B8List
 - https://opentutorials.org/module/1335/8677
- 
+
 LinkedList
+
 - https://opentutorials.org/module/1335/8821
 - https://velog.io/@riceintheramen/Linked-list
 - https://sycho-lego.tistory.com/17
 - https://velog.io/@choiiis/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EB%B0%B0%EC%97%B4Array%EA%B3%BC-%EB%A6%AC%EC%8A%A4%ED%8A%B8List
 - https://coding-factory.tistory.com/552
+- https://freestrokes.tistory.com/84
 
 HashTable
+
 - https://velog.io/@cyranocoding/Hash-Hashing-Hash-Table%ED%95%B4%EC%8B%9C-%ED%95%B4%EC%8B%B1-%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-6ijyonph6o
 - https://mangkyu.tistory.com/102
 
 Heap
+
 - https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html
 - https://kayuse88.github.io/binary-heap/
 - https://blog.naver.com/kaoara/221949258742
@@ -458,14 +520,17 @@ Heap
 - https://ratsgo.github.io/data%20structure&algorithm/2017/09/27/heapsort/
 
 Red-Black Tree
+
 - https://ratsgo.github.io/data%20structure&algorithm/2017/10/28/rbtree/
 - https://github.com/namjunemy/TIL/blob/master/Algorithm/red_black_tree_01.md
 - https://zeddios.tistory.com/237
+
 * Rotation: https://ratsgo.github.io/data%20structure&algorithm/2017/10/27/avltree/
 * 재정렬: https://junboom.tistory.com/18
 * 시간복잡도: https://ferrante.tistory.com/46
 
 B+ Tree
+
 * https://ssup2.github.io/theory_analysis/B_Tree_B+_Tree/
 * https://ju-hy.tistory.com/106
 * https://ko.wikipedia.org/wiki/B%2B_%ED%8A%B8%EB%A6%AC
