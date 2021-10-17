@@ -73,7 +73,7 @@
 | `필수` | :white_check_mark: | Strategy Pattern |  |
 | `필수` | :white_check_mark: | Template Method Pattern |  |
 | `필수` | :white_check_mark:| Factory Method Pattern |  |
-| `필수` | :white_large_square: | MVC1 & MVC2 Pattern |  |
+| `필수` | :white_check_mark: | MVC1 & MVC2 Pattern |  |
 
 <br>
 
