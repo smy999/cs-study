@@ -64,16 +64,16 @@
 <br>
 
 
-## 4. 디자인 패턴의 개념과 종류
+## 4. Design Pattern
 
 | 구분 | 진행상태 | 네트워크 | 비고 |
 | ------ | ------ | ------ | ------ |
-| `필수` | :white_large_square: | 디자인 패턴이란? |  |
-| `필수` | :white_large_square: | Singleton 패턴 |  |
-| `필수` | :white_large_square: | Strategy 패턴 |  |
-| `필수` | :white_large_square: | Template Method 패턴 |  |
-| `필수` | :white_large_square:| Factory Method 패턴 |  |
-| `필수` | :white_large_square: | MVC1 패턴과 MVC2 패턴 |  |
+| `필수` | :white_large_square: | Design Pattern의 개념과 종류 |  |
+| `필수` | :white_large_square: | Singleton Pattern |  |
+| `필수` | :white_large_square: | Strategy Pattern |  |
+| `필수` | :white_large_square: | Template Method Pattern |  |
+| `필수` | :white_large_square:| Factory Method Pattern |  |
+| `필수` | :white_large_square: | MVC1 & MVC2 Pattern |  |
 
 <br>
 
