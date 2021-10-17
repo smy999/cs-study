@@ -121,7 +121,8 @@ Design Pattern이 실제 적용된 것이 Framework, 이를 바탕으로 실제 
 
 Singletom Pattern을 따르는 클래스는 생성자가 여러 차례 호출되더라도 실제로 생성되는 객체는 하나이고 최초 생성 이후에 호출된 생성자는 최초의 생성자가 생성한 객체를 리턴한다. 이와 같은 디자인 유형을 **Singleton Pattern**이라고 한다. 주로 공통된 객체를 여러개 생성해서 사용하는 DBCP(DataBase Connection Pool)와 같은 상황에서 많이 사용된다.
 
-![Singleton_UML_class_diagram](/Users/smy/Desktop/stack-img/Singleton_UML_class_diagram.svg)
+
+
 
 <br>
 
@@ -142,7 +143,7 @@ Singletom Pattern을 따르는 클래스는 생성자가 여러 차례 호출되
 
 * 예시 코드
 
-  ![singleton](/Users/smy/Desktop/stack-img/singleton.jpeg)
+![singleton](https://user-images.githubusercontent.com/33407191/137627085-ac3d3a5d-36b0-4575-9277-c621bc4092e3.jpeg)
 
 ```
 public class SingletonPatternDemo {
@@ -200,7 +201,7 @@ Strategy Pattern(Policy Pattern)은 실행 중에 알고리즘을 선택할 수 
 
 ### Strategy 예시 코드
 
-### ![strategy_pattern_uml_diagram](/Users/smy/Desktop/stack-img/strategy_pattern_uml_diagram.jpeg)
+![strategy_pattern_uml_diagram](https://user-images.githubusercontent.com/33407191/137627107-2eb674cc-b9ca-4d10-92e9-a456294697f8.jpeg)
 
 * Step 1) Strategy.java
 
@@ -311,36 +312,99 @@ public class StrategyPatternDemo {
 
 ### Template Method 예시 코드
 
-### ![template_pattern_uml_diagram](/Users/smy/Desktop/stack-img/template_pattern_uml_diagram.jpeg)
+![template_pattern_uml_diagram](https://user-images.githubusercontent.com/33407191/137627118-5b5995bc-3337-4663-9482-3a3434d5b003.jpeg)
 
 * Step 1) Game.java
 
 ```
-public abstract class Game {   abstract void initialize();   abstract void startPlay();   abstract void endPlay();   //template method   public final void play(){      //initialize the game      initialize();      //start game      startPlay();      //end game      endPlay();   }}
+public abstract class Game {   
+     abstract void initialize();   
+     abstract void startPlay();   
+     abstract void endPlay();   
+
+     //template method   
+     public final void play(){      
+         //initialize the game      
+         initialize();      
+
+         //start game      
+         startPlay();      
+
+         //end game      
+         endPlay();   
+     }
+}
 ```
 
 * Step 2) Cricket.java
 
 ```
-public class Cricket extends Game {   @Override   void endPlay() {      System.out.println("Cricket Game Finished!");   }   @Override   void initialize() {      System.out.println("Cricket Game Initialized! Start playing.");   }   @Override   void startPlay() {      System.out.println("Cricket Game Started. Enjoy the game!");   }}
+public class Cricket extends Game {   
+    @Override   
+    void endPlay() {      
+        System.out.println("Cricket Game Finished!");   
+    }   
+
+    @Override   
+    void initialize() {      
+        System.out.println("Cricket Game Initialized! Start playing.");   
+    }   
+
+    @Override   
+    void startPlay() {      
+        System.out.println("Cricket Game Started. Enjoy the game!");   
+    }
+}
 ```
 
 * Step 2) Football.java
 
 ```
-public class Football extends Game {   @Override   void endPlay() {      System.out.println("Football Game Finished!");   }   @Override   void initialize() {      System.out.println("Football Game Initialized! Start playing.");   }   @Override   void startPlay() {      System.out.println("Football Game Started. Enjoy the game!");   }}
+public class Football extends Game {   
+    @Override   
+    void endPlay() {      
+        System.out.println("Football Game Finished!");   
+    }   
+
+    @Override   
+    void initialize() {      
+        System.out.println("Football Game Initialized! Start playing.");   
+    }   
+
+    @Override   
+    void startPlay() {      
+        System.out.println("Football Game Started. Enjoy the game!");   
+    }
+}
 ```
 
 * Step 3) TemplatePatternDemo.java
 
 ```
-public class TemplatePatternDemo {   public static void main(String[] args) {      Game game = new Cricket();      game.play();      System.out.println();      game = new Football();      game.play();		   }}
+public class TemplatePatternDemo {   
+    public static void main(String[] args) {      
+        Game game = new Cricket();      
+        game.play();      
+        System.out.println();      
+        game = new Football();      
+        game.play();		   
+    }
+}
 ```
 
 * Step 4) output
 
 ```
-Cricket Game Initialized! Start playing.Cricket Game Started. Enjoy the game!Cricket Game Finished!Football Game Initialized! Start playing.Football Game Started. Enjoy the game!Football Game Finished!
+Cricket Game Initialized! 
+Start playing.
+Cricket Game Started. 
+Enjoy the game!
+Cricket Game Finished!
+Football Game Initialized! 
+Start playing.
+Football Game Started. 
+Enjoy the game!
+Football Game Finished!
 ```
 
 
@@ -374,48 +438,104 @@ Factory 패턴에서는 생성 로직을 클라이언트에 노출시키지 않�
 
 ### Factory Method 예시 코드
 
-![factory_pattern_uml_diagram](/Users/smy/Desktop/stack-img/factory_pattern_uml_diagram.jpeg)
+![factory_pattern_uml_diagram](https://user-images.githubusercontent.com/33407191/137627140-30c4f4a7-a24d-4be1-88b3-cefc0d622e79.jpeg)
+
 
 * Step 1) Shape.java
 
 ```
-public interface Shape {   void draw();}
+public interface Shape {   
+    void draw();
+}
 ```
 
 * Step 2) Rectangle.java
 
 ```
-public class Rectangle implements Shape {   @Override   public void draw() {      System.out.println("Inside Rectangle::draw() method.");   }}
+public class Rectangle implements Shape {   
+    @Override   
+    public void draw() {      
+        System.out.println("Inside Rectangle::draw() method.");   
+    }
+}
 ```
 
 * Step 2) Square.java
 
 ```
-public class Square implements Shape {   @Override   public void draw() {      System.out.println("Inside Square::draw() method.");   }}
+public class Square implements Shape {   
+    @Override   
+    public void draw() {      
+        System.out.println("Inside Square::draw() method.");   
+    }
+}
 ```
 
 * Step 2) Circle.java
 
 ```
-public class Circle implements Shape {   @Override   public void draw() {      System.out.println("Inside Circle::draw() method.");   }}
+public class Circle implements Shape {   
+    @Override   
+    public void draw() {      
+        System.out.println("Inside Circle::draw() method.");   
+    }
+}
 ```
 
 * Step 3) ShapeFactory.java
 
 ```
-public class ShapeFactory {	   //use getShape method to get object of type shape    public Shape getShape(String shapeType){      if(shapeType == null){         return null;      }		      if(shapeType.equalsIgnoreCase("CIRCLE")){         return new Circle();               } else if(shapeType.equalsIgnoreCase("RECTANGLE")){         return new Rectangle();               } else if(shapeType.equalsIgnoreCase("SQUARE")){         return new Square();      }            return null;   }}
+public class ShapeFactory {	   
+    //use getShape method to get object of type shape    
+    public Shape getShape(String shapeType){      
+        if(shapeType == null){         
+            return null;      
+        }
+        
+        if(shapeType.equalsIgnoreCase("CIRCLE")){         
+            return new Circle();               
+        } else if(shapeType.equalsIgnoreCase("RECTANGLE")){         
+            return new Rectangle();               
+        } else if(shapeType.equalsIgnoreCase("SQUARE")){         
+            return new Square();      
+        }    
+        
+        return null;   
+    }
+}
 ```
 
 * Step 4) FactoryPatternDemo.java
 
 ```
-public class FactoryPatternDemo {   public static void main(String[] args) {      ShapeFactory shapeFactory = new ShapeFactory();      //get an object of Circle and call its draw method.      Shape shape1 = shapeFactory.getShape("CIRCLE");      //call draw method of Circle      shape1.draw();      //get an object of Rectangle and call its draw method.      Shape shape2 = shapeFactory.getShape("RECTANGLE");      //call draw method of Rectangle      shape2.draw();      //get an object of Square and call its draw method.      Shape shape3 = shapeFactory.getShape("SQUARE");      //call draw method of square      shape3.draw();   }}
+public class FactoryPatternDemo {   
+    public static void main(String[] args) {      
+        ShapeFactory shapeFactory = new ShapeFactory();      
+        
+        //get an object of Circle and call its draw method.      
+        Shape shape1 = shapeFactory.getShape("CIRCLE");      
+        //call draw method of Circle      
+        shape1.draw();      
+        
+        //get an object of Rectangle and call its draw method.      
+        Shape shape2 = shapeFactory.getShape("RECTANGLE");      
+        //call draw method of Rectangle      
+        shape2.draw();      
+        
+        //get an object of Square and call its draw method.      
+        Shape shape3 = shapeFactory.getShape("SQUARE");      
+        //call draw method of square      
+        shape3.draw();   
+    }
+}
 ```
 
 * Step 5) output
 
 ```
-Inside Circle::draw() method.Inside Rectangle::draw() method.Inside Square::draw() method.
+Inside Circle::draw() method.
+Inside Rectangle::draw() method.
+Inside Square::draw() method.
 ```
 
 
