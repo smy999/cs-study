@@ -279,9 +279,7 @@ public class StrategyPatternDemo {
 * Step 5) output
 
 ```
-10 + 5 = 15
-10 - 5 = 5
-10 * 5 = 50
+10 + 5 = 1510 - 5 = 510 * 5 = 50
 ```
 
 
@@ -318,95 +316,31 @@ public class StrategyPatternDemo {
 * Step 1) Game.java
 
 ```
-public abstract class Game {
-   abstract void initialize();
-   abstract void startPlay();
-   abstract void endPlay();
-
-   //template method
-   public final void play(){
-
-      //initialize the game
-      initialize();
-
-      //start game
-      startPlay();
-
-      //end game
-      endPlay();
-   }
-}
+public abstract class Game {   abstract void initialize();   abstract void startPlay();   abstract void endPlay();   //template method   public final void play(){      //initialize the game      initialize();      //start game      startPlay();      //end game      endPlay();   }}
 ```
 
 * Step 2) Cricket.java
 
 ```
-public class Cricket extends Game {
-
-   @Override
-   void endPlay() {
-      System.out.println("Cricket Game Finished!");
-   }
-
-   @Override
-   void initialize() {
-      System.out.println("Cricket Game Initialized! Start playing.");
-   }
-
-   @Override
-   void startPlay() {
-      System.out.println("Cricket Game Started. Enjoy the game!");
-   }
-}
+public class Cricket extends Game {   @Override   void endPlay() {      System.out.println("Cricket Game Finished!");   }   @Override   void initialize() {      System.out.println("Cricket Game Initialized! Start playing.");   }   @Override   void startPlay() {      System.out.println("Cricket Game Started. Enjoy the game!");   }}
 ```
 
 * Step 2) Football.java
 
 ```
-public class Football extends Game {
-
-   @Override
-   void endPlay() {
-      System.out.println("Football Game Finished!");
-   }
-
-   @Override
-   void initialize() {
-      System.out.println("Football Game Initialized! Start playing.");
-   }
-
-   @Override
-   void startPlay() {
-      System.out.println("Football Game Started. Enjoy the game!");
-   }
-}
+public class Football extends Game {   @Override   void endPlay() {      System.out.println("Football Game Finished!");   }   @Override   void initialize() {      System.out.println("Football Game Initialized! Start playing.");   }   @Override   void startPlay() {      System.out.println("Football Game Started. Enjoy the game!");   }}
 ```
 
 * Step 3) TemplatePatternDemo.java
 
 ```
-public class TemplatePatternDemo {
-   public static void main(String[] args) {
-
-      Game game = new Cricket();
-      game.play();
-      System.out.println();
-      game = new Football();
-      game.play();		
-   }
-}
+public class TemplatePatternDemo {   public static void main(String[] args) {      Game game = new Cricket();      game.play();      System.out.println();      game = new Football();      game.play();		   }}
 ```
 
 * Step 4) output
 
 ```
-Cricket Game Initialized! Start playing.
-Cricket Game Started. Enjoy the game!
-Cricket Game Finished!
-
-Football Game Initialized! Start playing.
-Football Game Started. Enjoy the game!
-Football Game Finished!
+Cricket Game Initialized! Start playing.Cricket Game Started. Enjoy the game!Cricket Game Finished!Football Game Initialized! Start playing.Football Game Started. Enjoy the game!Football Game Finished!
 ```
 
 
@@ -445,107 +379,43 @@ Factory 패턴에서는 생성 로직을 클라이언트에 노출시키지 않�
 * Step 1) Shape.java
 
 ```
-public interface Shape {
-   void draw();
-}
+public interface Shape {   void draw();}
 ```
 
 * Step 2) Rectangle.java
 
 ```
-public class Rectangle implements Shape {
-
-   @Override
-   public void draw() {
-      System.out.println("Inside Rectangle::draw() method.");
-   }
-}
+public class Rectangle implements Shape {   @Override   public void draw() {      System.out.println("Inside Rectangle::draw() method.");   }}
 ```
 
 * Step 2) Square.java
 
 ```
-public class Square implements Shape {
-
-   @Override
-   public void draw() {
-      System.out.println("Inside Square::draw() method.");
-   }
-}
+public class Square implements Shape {   @Override   public void draw() {      System.out.println("Inside Square::draw() method.");   }}
 ```
 
 * Step 2) Circle.java
 
 ```
-public class Circle implements Shape {
-
-   @Override
-   public void draw() {
-      System.out.println("Inside Circle::draw() method.");
-   }
-}
+public class Circle implements Shape {   @Override   public void draw() {      System.out.println("Inside Circle::draw() method.");   }}
 ```
 
 * Step 3) ShapeFactory.java
 
 ```
-public class ShapeFactory {
-	
-   //use getShape method to get object of type shape 
-   public Shape getShape(String shapeType){
-      if(shapeType == null){
-         return null;
-      }		
-      if(shapeType.equalsIgnoreCase("CIRCLE")){
-         return new Circle();
-         
-      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
-         return new Rectangle();
-         
-      } else if(shapeType.equalsIgnoreCase("SQUARE")){
-         return new Square();
-      }
-      
-      return null;
-   }
-}
+public class ShapeFactory {	   //use getShape method to get object of type shape    public Shape getShape(String shapeType){      if(shapeType == null){         return null;      }		      if(shapeType.equalsIgnoreCase("CIRCLE")){         return new Circle();               } else if(shapeType.equalsIgnoreCase("RECTANGLE")){         return new Rectangle();               } else if(shapeType.equalsIgnoreCase("SQUARE")){         return new Square();      }            return null;   }}
 ```
 
 * Step 4) FactoryPatternDemo.java
 
 ```
-public class FactoryPatternDemo {
-
-   public static void main(String[] args) {
-      ShapeFactory shapeFactory = new ShapeFactory();
-
-      //get an object of Circle and call its draw method.
-      Shape shape1 = shapeFactory.getShape("CIRCLE");
-
-      //call draw method of Circle
-      shape1.draw();
-
-      //get an object of Rectangle and call its draw method.
-      Shape shape2 = shapeFactory.getShape("RECTANGLE");
-
-      //call draw method of Rectangle
-      shape2.draw();
-
-      //get an object of Square and call its draw method.
-      Shape shape3 = shapeFactory.getShape("SQUARE");
-
-      //call draw method of square
-      shape3.draw();
-   }
-}
+public class FactoryPatternDemo {   public static void main(String[] args) {      ShapeFactory shapeFactory = new ShapeFactory();      //get an object of Circle and call its draw method.      Shape shape1 = shapeFactory.getShape("CIRCLE");      //call draw method of Circle      shape1.draw();      //get an object of Rectangle and call its draw method.      Shape shape2 = shapeFactory.getShape("RECTANGLE");      //call draw method of Rectangle      shape2.draw();      //get an object of Square and call its draw method.      Shape shape3 = shapeFactory.getShape("SQUARE");      //call draw method of square      shape3.draw();   }}
 ```
 
 * Step 5) output
 
 ```
-Inside Circle::draw() method.
-Inside Rectangle::draw() method.
-Inside Square::draw() method.
+Inside Circle::draw() method.Inside Rectangle::draw() method.Inside Square::draw() method.
 ```
 
 
@@ -571,7 +441,43 @@ MVC 는 Model, View, Controller의 약자로, 하나의 애플리케이션, 프�
 | View       | - Model은 여러 개의 View를 가질 수 있다.<br>- View는 Model에게 질의하여 Model로부터 값을 가져와 사용자에게 보여준다. (= 데이터 및 객체의 입출력을 담당)<br>- 사용자 인터페이스 요소로 사용자가 직접 볼 수 있는 화면을 의미한다. |
 | Controller | - View는 여러 개의 Controller를 가진다.<br>- 프로그램의 작동 순서, 방식을 제어한다.<br>- 사용자는 Controller를 통해 Model의 상태를 변경하거나 다른 클래스에게 알릴 수 있는 함수가 필요하다. |
 
+<br>
 
+### MVC1
+
+웹브라우저 요청을 JSP가 처리, JSP가 Controller와 View 기능 모두 담당
+
+쉽게 말하면, 하나의 JSP 페이지 내에서 Controller는 자바, View는 HTML&CSS, Event는 Javascript를 사용합니다.
+
+Model은 JDBC 인터페이스로 DB 조작하면서 Class를 정의합니다.
+
+<br>
+
+### MVC1 Pros-Cons
+
+| Pros                                                         | Cons                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 페이지 흐름이 단순하고 구조가 간단하여 중소형 프로젝트에 적합하다. | 유지보수가 어려워서 웹 규모가 커질수록 복잡하다.<br>개발자와 디자이너 역할 분담이 어렵다. |
+
+<br>
+
+### MVC2
+
+웹 브라우저 요청을 Controller에서 처리한다.
+
+Controller는 요청에 대한 로직처리를 Model로 보내고, Model은 결과를 View로 보내여 사용자에게 응답한다.
+
+Model은 MVC1, MVC2 모두 동일하다.
+
+View는 JSP로 구성되어 있으며, 자바는 포함되지 않고 jstl을 사용해 결과를 표현한다.
+
+<br>
+
+### MVC2 Pros-Cons
+
+| Pros                                                         | Cons                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 유지보수 확정에 용이하며 Controller와 View의 분리로 명료한 구조를 가진다.<br>개발자와 디자이너의 역할 분담이 확실하다.<br>규모가 크고 유지보수가 많은 경우 사용한다. | 구조 설계를 위한 시간이 많이 소요되어 개발이 어렵다.<br>높은 수준의 이해도가 필요하여 개발팀 팀원의 수준이 높아야 한다. |
 
 <br>
 
@@ -613,3 +519,6 @@ Factory Method Pattern
 * https://www.tutorialspoint.com/design_pattern/factory_pattern.htm
 * https://bamdule.tistory.com/157
 
+MVC1 vc MVC2 Pattern
+
+* https://chobopark.tistory.com/21
