@@ -46,7 +46,7 @@
 
 ## 3. Spring
 
-| 구분 | 진행상태 | 네트워크 | 비고 |
+| 구분 | 진행상태 | 스프링 | 비고 |
 | ------ | ------ | ------ | ------ |
 | `필수` | :white_check_mark: | Spring Framework란 |  |
 | `필수` | :white_check_mark: | Spring, Spring MVC, Spring Boot의 차이 |  |
@@ -66,13 +66,13 @@
 
 ## 4. Design Pattern
 
-| 구분 | 진행상태 | 네트워크 | 비고 |
+| 구분 | 진행상태 | 디자인  | 비고 |
 | ------ | ------ | ------ | ------ |
-| `필수` | :white_large_square: | Design Pattern의 개념과 종류 |  |
-| `필수` | :white_large_square: | Singleton Pattern |  |
-| `필수` | :white_large_square: | Strategy Pattern |  |
-| `필수` | :white_large_square: | Template Method Pattern |  |
-| `필수` | :white_large_square:| Factory Method Pattern |  |
+| `필수` | :white_check_mark: | Design Pattern의 개념과 종류 |  |
+| `필수` | :white_check_mark: | Singleton Pattern |  |
+| `필수` | :white_check_mark: | Strategy Pattern |  |
+| `필수` | :white_check_mark: | Template Method Pattern |  |
+| `필수` | :white_check_mark:| Factory Method Pattern |  |
 | `필수` | :white_large_square: | MVC1 & MVC2 Pattern |  |
 
 <br>
