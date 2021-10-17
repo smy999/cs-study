@@ -68,6 +68,7 @@
 
 | 구분 | 진행상태 | 네트워크 | 비고 |
 | ------ | ------ | ------ | ------ |
+| `필수` | :white_large_square: | 디자인 패턴이란? |  |
 | `필수` | :white_large_square: | Singleton 패턴 |  |
 | `필수` | :white_large_square: | Strategy 패턴 |  |
 | `필수` | :white_large_square: | Template Method 패턴 |  |
