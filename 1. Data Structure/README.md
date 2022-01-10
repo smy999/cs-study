@@ -204,34 +204,134 @@ list.indexOf();     // return: index, -1
 - Hash 함수의 특성상 다른 문자열의 hasing 결과가 같을 수 있다. 이런 경우를 hash collision이라고 한다.
 
 
-### 2. 구조
 
-- Key: 길이가 일정하지 않은 Hash 함수의 입력값.
-- Hash Function: key를 hast로 변경하는 역할. 일정하지 않은 길이를 가진 key를 일정하게 만들어 저장소를 효율적으로 관리할 수 있다. 하지만 다른 문자열의 hasing 결과가 같아서 발생하는 hash collision이 발생할 수 있어서 hash 함수를 만들 때 충돌을 최소화하는 방법을 찾아야한다.
-- Hash: Hash Function의 결과값. 저장소(bucket과 slot)에서 value와 매칭되어 저장된다.
-- Value: 최종적으로 저장되는 값. bucket과 slot에 저장되며, key-value 쌍으로 key에 매칭되어 기본 연산 접근이 가능하다.
+### 2. 구조
+![datastructure_hashtable](https://user-images.githubusercontent.com/33407191/148777138-b9cabcbd-d94c-4fde-88d1-e0197fbc9e25.png)
+
+| 구분                    | 내용                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| Key                     | 길이가 일정하지 않은 Hash 함수의 입력값(= 매핑전 원래 데이터 값)공간 복잡도가 커진다. |
+| Hash                    | 데이터를 다루는 기법                                         |
+| Hash Function           | key를 hash value로 변경하는 역할. 일정하지 않은 길이를 가진 key를 고정된 길이의 데이터로 매핑하여 저장해 저장소를 효율적으로 관리할 수 있다. 하지만 다른 문자열의 hasing 결과가 같아서 나는 문제인 hash collision이 발생할 수 있다. 따라서 hash function를 만들 때 충돌을 최소화하는 방법을 찾아야 한다.해시 함수 의존도가 크며, 해시 함수로 인해 추가 연산이 필요하다. |
+| Hash Value(= Hash Code) | 해시 함수에 의해 반환된 데이터의 고유 숫자 값(= 변환된 Key 값) |
+| Value                   | 최종적으로 저장되는 값. bucket과 slot에 저장되며, key-value 쌍으로 key에 매칭되어 기본 연산 접근이 가능하다. |
+
+
 
 
 ### 3. 시간 복잡도
 
-* 평균: O(1)
-* 데이터가 충돌한 경우: O(n), 모든 저장소를 검색해야 한다.
+- 평균: O(1)
+
+  (Hash Table의 index는 데이터의 고유한 위치이기 때문에 삽입 삭제 시 다른 데이터를 채울 필요가 업다.(= 데이터 이동이 없다.))
+
+- 데이터가 충돌한 경우: O(n), 모든 저장소를 검색해야 한다.
+
+
 
 
 ### 4. 장단점
 
-| 장점 | 단점 |
-| ---- | ---- |
-|      |      |
-|      |      |
-|      |      |
+| 장점                                                         | 단점                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 적은 자원으로 많은 데이터 관리 가능<br>(HDD 저장소나 클라우드에 존재하는 수많든 데이터를 유한한 Hash 값으로 매핑하여 작은 크기의 메모리로 프로세스 관리가 가능) | 충돌에 주의해야 한다.                                        |
+| Index를 사용하여 검색/삽입/삭제가 빠르다.                    | 공간 복잡도가 커진다.                                        |
+| Key를 hashing 하는 과정에서 보안성이 올라간다.               | 순서가 있는 배열에는 맞지 않는다.                            |
+| 중복을 제거에 유리하다.                                      | 해시 함수 의존도가 크며, 해시 함수로 인해 추가 연산이 필요하다. |
+
+
+
+
+
+### 5. Hash Collision(해시 충돌)
+
+![datastructure_hashtable_collision](https://user-images.githubusercontent.com/33407191/148777159-9c4f8394-a2b2-4b07-8ad1-321c4d35add5.png)
+
+Hash Function의 서로 다른 입력값의 결과가 같을 때 즉, 결과 값이 중복될 때 hash collision이라고 한다.
+
+Hash Collision을 해결하는 방법은 크게 2가지가 있다.
+
+1. 분리 연결법(Seperate Chaining)
+2. 개방 주소법(Open Addressing)
+
+
+
+#### 5-1. 분리 연결법(Separate Chaining)
+
+![datastructure_hashtable_seperatechaining](https://user-images.githubusercontent.com/33407191/148777200-5b07203f-0721-4332-9482-eff269f43c87.png)
+
+분리 연결법은 동일한 버킷의 데이터에 대해 자료구조를 활용해 메모리를 추가하여 다음 데이터의 주소를 저장하는 것이다.
+
+Linked List 혹은 Tree(Red-Black Tree)를 사용하는 방법으로 데이터가 6개 이하라면 Linked List를, 8개 이상이면 Tree를 사용한다.
+
+위 그림처럼 인덱스에서 충돌이 일어났을 때 인덱스가 가리키는 linked list에 node를 삽입한다.
+
+분리 연결법은 Linked List 구조이기 떄문에 추가할 수 있는 데이터의 제약이 적다.
+
+해당 방법은 JDK 내부(Java8의 Hash테이블은 Self-Balancing Binary Search Tree 자료구조를 사용해 Chaining 방식을 구현)에서도 사용한다.
+
+
+
+#### 5-2. **개방 주소법(Open Addressing)**
+
+![datastructure_hashtable_openaddressing](https://user-images.githubusercontent.com/33407191/148777226-f54b6663-6910-4abc-8563-ebe02785af70.png)
+
+개방 주소법은 분리 연결법과 다르게 비어있는 해시 테이블의 공간을 활용한다. 개방 주소법을 활용하는 대표적인 방법에는 3가지가 존재한다.
+
+1. Linear Probing: 현재의 버킷 index로부터 고정폭 만큼씩 이동하여 차례대로 검색해 비어 있는 버킷에 데이터를 저장한다.
+
+2. Quadratic Probing: 해시의 저장순서 폭을 제곱으로 저장하는 방식이다. 예를 들어 처음 충돌이 발생한 경우에는 1만큼 이동하고 그 다음 계속 충돌이 발생하면 2^2, 3^2 칸씩 옮기는 방식이다.
+
+3. Double Hashing Probing: 해시된 값을 한번 더 해싱하여 해시의 규칙성을 없애버리는 방식이다. 해시된 값을 한번 더 해싱하여 새로운 주소를 할당하기 때문에 다른 방법들보다 많은 연산을 하게 된다.
+
+
+
+리사이징(Resizing)?
+
+Open Addressing은 고정 크기의 배열을 사용한다. 따라서 데이터를 더 넣기 위해서는 배열을 확장해야한다. 이것을 리사이징이라고 한다.
+
+확장시 평균 2배로 확장하며, 전체 버켓의 75%가 저장되면 확장한다. 배열의 특성상 확장된 크기의 배열을 만든 후, 기존 배열을 복사한다.
+
+
+
+### 6. **HashTable vs HashMap**
+
+| 구분                     | HashTable   | HashMap                     |
+| ------------------------ | ----------- | --------------------------- |
+| 동기화 여부(thread-safe) | O           | X                           |
+| Key의 null 값 허용 여부  | X           | O                           |
+| Return type              | Enumeration | Fail-Fast(or safe)-Iterator |
+
+(Thread-Safe? 여러 스레트가 하나의 자원을 사용하려할 때, 사용하려는 스레드 하나를 제외한 나머지 스레드들이 자원을 사용하지 못하는 것.)
+
+
+
+
+
+
 
 <br>
+
+
+
+# Stack
+
+
+
+### 1.  개념
+
+
+
+
+
 
 <hr>
 
 
-저번주 내용 skipㅎ 나중에 할게요
+
+
+
+
 
 <hr>
 
