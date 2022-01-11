@@ -3,8 +3,8 @@
 - [Array](#Array)
 - [LinkedList](#LinkedList)
 - [Hash Table](#HashTable)
-- Stack     
-- Queue
+- [Stack](#Stack)    
+- [Queue]
 - Graph
 - Tree
 - 그래프(Graph)와 트리(Tree)의 차이점
