@@ -206,6 +206,7 @@ list.indexOf();     // return: index, -1
 
 
 ### 2. 구조
+
 ![datastructure_hashtable](https://user-images.githubusercontent.com/33407191/148777138-b9cabcbd-d94c-4fde-88d1-e0197fbc9e25.png)
 
 | 구분                    | 내용                                                         |
@@ -320,6 +321,79 @@ Open Addressing은 고정 크기의 배열을 사용한다. 따라서 데이터�
 
 ### 1.  개념
 
+Stack? 쌓아 올리다.
+
+데이터를 책처럼 차곡차곡 쌓아올리는 형태의 자료구조로,
+
+한 방향에서만 자료를 넣고 뺄 수 있는 LIFO(Last In First Out, 후입선출) 방식의 자료구조이다.
+
+- LIFO
+- 같은 구조와 크기의 자료를 정해진 방향으로만 쌓는다.
+- 가장 위에 있는 자료(= 가장 최신의 자료)를 top이라고 하며, top을 통해서만 stack에 접근이 가능하다.
+- 비어있는 stack에서 원소를 뺄 때 stack underflow라는 오류가, stack에 원소를 넣을 때 stack overflow라는 오류가 발생한다.
+
+
+
+<br>
+
+
+
+### 2. 연산
+
+<img width="879" alt="datastructure_stack" src="https://user-images.githubusercontent.com/33407191/148966433-def026c5-0b0e-401e-afb2-0bcfd4d9f2e2.png">
+
+* push(item): item 하나를 stack의 가장 윗부분에 추가한다.
+* pop(): stack에서 가장 위에 있는 항목을 제거한다.
+* peek(): stack의 가장 위에 있는 항목을 반환한다.
+* isEmpty(): stack이 비어 있을 때 true를 반환한다.
+
+
+
+<br>
+
+
+
+### 3. 시간 복잡도
+
+| 연산   | 평균 | 최악 |
+| ------ | ---- | ---- |
+| Access | O(n) | O(n) |
+| Search | O(n) | O(n) |
+| Push   | O(1) | O(1) |
+| Pop    | O(1) | O(1) |
+
+
+
+<br>
+
+
+
+### 4. 장단점
+
+| 장점                            | 단점                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| 단순한 구조로 인해 구현이 쉽다. | 데이터 최대 개수를 미리 정해야 한다.                         |
+| 데이터 저장/읽기 속도가 빠르다. | 저장 공간의 낭비가 발생할 수 있다.(미리 최대 개수만큼의 저장 공간을 확보해야 한다.) |
+
+
+
+<br>
+
+
+
+### 5. 사용처
+
+* 재귀 알고리즘
+* 실행 취소(Undo)
+* Backtracking
+* 웹 브라우저 뒤로 가기
+* 구문 분석
+* 후위(postfix) 표기법 연산
+* 문자열 역순 출력
+* 수식의 괄호 검사
+
+
+
 
 
 
@@ -333,7 +407,9 @@ Open Addressing은 고정 크기의 배열을 사용한다. 따라서 데이터�
 
 
 
+
 <hr>
+
 
 
 
@@ -612,6 +688,15 @@ HashTable
 - https://velog.io/@cyranocoding/Hash-Hashing-Hash-Table%ED%95%B4%EC%8B%9C-%ED%95%B4%EC%8B%B1-%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-6ijyonph6o
 - https://mangkyu.tistory.com/102
 - https://hee96-story.tistory.com/48
+
+Stack
+
+- https://gmlwjd9405.github.io/2018/08/03/data-structure-stack.html
+- https://monsieursongsong.tistory.com/4
+- https://yoongrammer.tistory.com/45
+- https://devuna.tistory.com/22
+- https://goodgid.github.io/Data-Structure-Pros-And-Cons/
+- https://onnons.tistory.com/293
 
 Heap
 
