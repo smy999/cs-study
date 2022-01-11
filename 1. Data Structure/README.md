@@ -4,7 +4,7 @@
 - [LinkedList](#LinkedList)
 - [Hash Table](#HashTable)
 - [Stack](#Stack)    
-- [Queue]
+- [Queue](#Queue)
 - Graph
 - Tree
 - 그래프(Graph)와 트리(Tree)의 차이점
