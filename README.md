@@ -7,7 +7,7 @@
 | `필수` | :white_check_mark: | Array |  |
 | `필수` | :white_check_mark: | LinkedList|  |
 | `필수` | :white_check_mark: | Hash Table|  |
-| `필수` | :white_large_square: | Stack |  |
+| `필수` | :white_check_mark: | Stack |  |
 | `필수` | :white_large_square: | Queue |  |
 | `필수` | :white_large_square: | Graph |  |
 | `필수` | :white_large_square: | Tree |  |
