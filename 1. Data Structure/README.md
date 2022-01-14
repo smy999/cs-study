@@ -309,7 +309,7 @@ Open Addressing은 고정 크기의 배열을 사용한다. 따라서 데이터�
 
 
 
-
+<br>
 
 <br>
 
@@ -398,6 +398,109 @@ Stack? 쌓아 올리다.
 
 
 
+<br>
+
+<br>
+
+
+
+# Queue
+
+
+
+### 1.  개념
+
+Queue? 줄, 줄을 서서 기다리다
+
+한쪽에서 데이터가 추가되고 다른 한쪽에서는 데이터가 삭제되는 FIFO(First In First Out) 구조
+
+
+
+<br>
+
+
+
+### 2. 연산
+
+![datastructure_queue](https://user-images.githubusercontent.com/33407191/149492136-fd9c080c-612a-4f0f-b3e2-cbfce4a6ed0c.png)
+
+* Enqueue: 맨 뒤에 요소 추가
+* Dequeue: 맨 앞쪽의 요소 삭제
+* peek: front에 위치한 데이터 읽기
+* front: 맨 앞의 위치
+* rear: 맨 뒤의 위치
+
+
+
+<br>
+
+
+
+### 3. 시간 복잡도
+
+- 탐색: O(n)
+- 삽입/삭제: O(1)
+
+
+
+<br>
+
+
+
+### 4. 종류
+
+#### 4-1) **Linear Queue**(또는 Linked Queue, 선형큐)
+
+![datastructure_queue_linear](https://user-images.githubusercontent.com/33407191/149492169-dda9aff4-f627-4925-ae5f-36a7f3b3e24f.png)
+
+- 선형 배열 또는 연결리스트를 사용하여 규현된 Queue
+- 데이터 삽입을 위해서 계속해서 요소를 이동시켜야 한다.
+- 삽입/삭제 연산이 계속되면 front와 rear는 증가한다. 따라서 front 앞쪽에 저장 공간이 있더라도 삽입할 수 없는 문제가 발생한다.
+
+
+
+#### **2) Circular Queue**(선형큐)
+
+(시작 자료는 원형큐가 복잡하여 그리기를 포기했다. 대신 [https://velog.io/@nnnyeong/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9D-Stack-%ED%81%90-Queue-%EB%8D%B1-Deque](https://velog.io/@nnnyeong/자료구조-스택-Stack-큐-Queue-덱-Deque)를 참고하자.)
+
+- 위 선형큐의 저장 공간의 낭비 문제를 해결하지만 제한된 크기로 문제가 된다.
+- front는 맨 첫번째 요소 바로 앞을 가리키며, rear는 마지막 요소를 가리킨다.
+- empty 상태: front == rear
+- full 상태: front == (rear+1) % MAX_QUEUE_SIZE
+- empty, full 상태를 구분하기 위하여 하나의 공간을 비운다.
+
+
+
+<br>
+
+
+
+### 5. 장단점
+
+|                    | 장점             | 단점        |
+| ------------------ | ---------------- | ----------- |
+| **Linear Queue**   | 확장 가능한 크기 | 느린 속도   |
+| **Circular Queue** | 빠른 속도        | 제한된 크기 |
+
+
+
+<br>
+
+
+
+### 6. 사용처
+
+* 프린트 인쇄 대기열
+* 콜센터 대기시간
+* 프로세스 관리
+* BFS 알고리즘 구현
+
+
+
+<br>
+
+
+
 
 <hr>
 
@@ -408,12 +511,16 @@ Stack? 쌓아 올리다.
 
 
 
+
 <hr>
+
 
 
 
 
 <br>
+
+
 
 
 # Heap
@@ -697,6 +804,14 @@ Stack
 - https://devuna.tistory.com/22
 - https://goodgid.github.io/Data-Structure-Pros-And-Cons/
 - https://onnons.tistory.com/293
+
+Queue
+
+- https://monsieursongsong.tistory.com/5
+- https://devuna.tistory.com/22
+- [https://velog.io/@nnnyeong/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9D-Stack-%ED%81%90-Queue-%EB%8D%B1-Deque](https://velog.io/@nnnyeong/자료구조-스택-Stack-큐-Queue-덱-Deque)
+- https://minosaekki.tistory.com/11
+- https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=rlaauddlf200&logNo=30140551855
 
 Heap
 
