@@ -406,6 +406,7 @@ Stack? 쌓아 올리다.
 
 # Queue
 
+![datastructure_queue](https://user-images.githubusercontent.com/33407191/149959687-fba775d2-c521-4e18-a40e-b7d3abeeb3f1.png)
 
 
 ### 1.  개념
@@ -422,7 +423,7 @@ Queue? 줄, 줄을 서서 기다리다
 
 ### 2. 연산
 
-![datastructure_queue](https://user-images.githubusercontent.com/33407191/149492136-fd9c080c-612a-4f0f-b3e2-cbfce4a6ed0c.png)
+
 
 * Enqueue: 맨 뒤에 요소 추가
 * Dequeue: 맨 앞쪽의 요소 삭제
@@ -451,7 +452,7 @@ Queue? 줄, 줄을 서서 기다리다
 
 #### 4-1) **Linear Queue**(또는 Linked Queue, 선형큐)
 
-![datastructure_queue_linear](https://user-images.githubusercontent.com/33407191/149492169-dda9aff4-f627-4925-ae5f-36a7f3b3e24f.png)
+![datastructure_linear](https://user-images.githubusercontent.com/33407191/149959864-e2b266a4-7a6b-419a-8c04-5a4eaf668c52.png)
 
 - 선형 배열 또는 연결리스트를 사용하여 규현된 Queue
 - 데이터 삽입을 위해서 계속해서 요소를 이동시켜야 한다.
@@ -459,7 +460,7 @@ Queue? 줄, 줄을 서서 기다리다
 
 
 
-#### **2) Circular Queue**(선형큐)
+#### 4-2) ** Circular Queue**(선형큐)
 
 (시작 자료는 원형큐가 복잡하여 그리기를 포기했다. 대신 [https://velog.io/@nnnyeong/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9D-Stack-%ED%81%90-Queue-%EB%8D%B1-Deque](https://velog.io/@nnnyeong/자료구조-스택-Stack-큐-Queue-덱-Deque)를 참고하자.)
 
