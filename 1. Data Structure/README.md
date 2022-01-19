@@ -5,7 +5,7 @@
 - [Hash Table](#HashTable)
 - [Stack](#Stack)    
 - [Queue](#Queue)
-- Graph
+- [Graph](#Graph)
 - Tree
 - 그래프(Graph)와 트리(Tree)의 차이점
 - [Heap](#Heap)
@@ -500,20 +500,167 @@ Queue? 줄, 줄을 서서 기다리다
 
 <br>
 
+<br>
+
+
+
+
+
+# Graph
+
+
+
+### 1. 개념
+
+Graph? 정점과 간선으로 이루어진 자료구조
+
+정점과 그 정점을 연결하는 간선을 하나로 모아놓은 구조로, 정점 간의 관계를 표현
+
+정점마다 간선이 있을 수도, 없을 수도 있다.
+
+Graph는 여러 개의 고립된 부분 그래프(Isolated Subgraphs)로 구성될 수 있다.
+
+
+
+<br>
+
+
+
+### 2. 구조
+
+- 정점(vertice) : 노드(node)라고도 하며 정점에는 데이터가 저장 (A, B, C, D)
+- 간선(edge): 링크(arcs)라고도 하며 정점 간의 관계를 나타냄
+- 인접 정점(adjacent vertex) : 간선에 의해 연결된 정점 (A, B는 인접 정점)
+- 단순 경로(simple-path): 경로 중 반복되는 정점이 없는 것, 같은 간선을 자나가지 않는 경로
+- 차수(degree): 무방향 그래프에서 하나의 정점에 인접한 정점의 수 (A의 차수는 3)
+- 진출 차수(out-degree) : 방향 그래프에서 사용되는 용어로 한 정점에서 외부로 향하는 간선의 수
+- 진입 차수(in-degree) : 방향 그래프에서 사용되는 용어로 외부 정점에서 들어오는 간선의 수
+
+
+
+<br>
+
+
+
+### 3. 종류
+
+<img src = "https://user-images.githubusercontent.com/33407191/150109084-cb3c8597-8358-4264-8ca1-bef64b7b2d17.png" height="300px">
+
+- 무방향 그래프: 두 정점을 연결하는 간선에 방향이 없다.
+
+- 방향 그래프: 두 정점을 연결하는 간선에 방향이 있다.
+
+<img src = "https://user-images.githubusercontent.com/33407191/150109397-c9dc7d3a-3eae-43d7-bc44-484e6020cc2e.png" height="300px">
+
+- 연결 그래프: 무방향 그래프에서 모든 정점에 대해서 항상 경로가 존재한다.
+
+- 비연결 그래프: 무방향 그래프에서 특정 정점 사이에 경로가 존재하지 않는다.
+
+<img src = "https://user-images.githubusercontent.com/33407191/150109420-a509527d-64d0-4b53-b649-6dc4b7422cb3.png" height="300px">
+
+- 순환 그래프: 시작 정점과 도착 정점이 동일한 그래프
+
+- 비순환 그래프: 순환 그래프를 제외한 그래프로 사이클이 존재하지 않는다.
+
+<img src = "https://user-images.githubusercontent.com/33407191/150109438-2672a0bc-7950-4ae2-b657-dd84d95b0349.png" height="300px">
+
+- 완전 그래프: 그래프의 모든 정점이 서로 연결되어 있다.
+
+<img src = "https://user-images.githubusercontent.com/33407191/150109455-a296a192-bc0e-47d9-8c75-116da14c456c.png" height="300px">
+
+- 가중치 그래프: 간선에 가중치가 할당된 그래프
+
+
+
+<br>
+
+
+
+### 4. 구현
+
+#### **1) Adjacency Matrix(인접 행렬)**
+
+- 그래프에 간선이 많은 밀집 그래프(Dense Graph)
+- 정점 간에 연결이 되어있으면 1, 아니면 0
+
+
+
+#### **2) Adjacency List(인접 리스트)**
+
+- 가장 일반적인 그래프 표현 구조
+- 그래프 내 적은 숫자의 간선을 가지는 희소 그래프(Sparse Graph)의 경우
+- 정점 간에 연결이 되어있으면 해당 정점의 인덱스에 해당 정점 삽입
+
+
+
+<br>
+
+
+
+### 5. 장단점
+
+| 구분                 | 장점                                                         | 단점                                                         |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Adjacency Matrix** | \- 2차원 배열 안에 모든 정점들의 간선 정보를 담아 배열의 위치를 확인하면 두 점에 대한 연결 정보 조회에 O(1)의 시간 복잡도를 가진다.<br>\- 구현이 간단한다. | \- 모든 정점에 대한 간선 정보를 대입해 O(n^2)의 시간 복잡도를 가진다.<br>\- 필요 이상의 공간이 낭비된다. |
+| **Adjacency List**   | \- 정점들의 연결 정보를 탐색할 때 O(n)의 시간 복잡도를 가진다.<br>\- 필요한 만큼의 공간만 사용하여 공간의 낭비가 적다. | \- 특정 두 점이 연결되었는지 확인할 때 인접 행렬에 비해 시간이 오래 걸린다.<br>\- 구현이 어렵다. |
+
+
+
+<br>
+
+
+
+### 6. 탐색
+
+탐색? 그래프의 존재하는 모든 정점을 한 번씩 방분하는 것.
+
+
+
+#### **1) 깊이 우선 탐색(DFS)**
+
+최대한 깊게 탐색
+
+임의의 정점에서 시작해서 다음 분기로 넘어가기 전에 해당 분기를 완벽히 탐색한다.
+
+다이상 갈 곳이 없다면 이전 정점으로 돌아가는 방법
+
+재귀 호출이나 스택을 사용하여 구현
+
+모든 정점을 방문할 때 사용
+
+
+
+#### **2) 너비 우선 탐색(BFS)**
+
+최대한 넓게 탐색
+
+임의의 정점에서 시작해서 인접한 노드를 먼저 탐색한다.
+
+시적 정점에서 인접한 모든 정점을 방문한 후 다시 인접 정점에 인접한 정점을 방문하는 방법
+
+큐를 사용하여 구현
+
+두 정점 사이의 최단 경로 혹은 임의의 경로를 찾을 때 사용
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+
+
 
 
 
 <hr>
 
-
-
-
-
-
-
-
-
 <hr>
+
 
 
 
@@ -813,6 +960,15 @@ Queue
 - [https://velog.io/@nnnyeong/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9D-Stack-%ED%81%90-Queue-%EB%8D%B1-Deque](https://velog.io/@nnnyeong/자료구조-스택-Stack-큐-Queue-덱-Deque)
 - https://minosaekki.tistory.com/11
 - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=rlaauddlf200&logNo=30140551855
+
+Graph
+
+- https://coding-factory.tistory.com/610
+- https://suyeon96.tistory.com/32
+
+- https://hongcoding.tistory.com/78
+
+- https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html
 
 Heap
 
