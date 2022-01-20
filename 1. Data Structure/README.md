@@ -6,7 +6,7 @@
 - [Stack](#Stack)    
 - [Queue](#Queue)
 - [Graph](#Graph)
-- Tree
+- [Tree](#Tree)
 - 그래프(Graph)와 트리(Tree)의 차이점
 - [Heap](#Heap)
 - [Red-Black Tree](#Red-Black-Tree)
