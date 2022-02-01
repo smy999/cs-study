@@ -10,8 +10,8 @@
 | `필수` | :white_check_mark: | Stack |  |
 | `필수` | :white_check_mark: | Queue |  |
 | `필수` | :white_check_mark: | Graph |  |
-| `필수` | :white_large_square: | Tree |  |
-| `필수` | :white_large_square: | 그래프(Graph)와 트리(Tree)의 차이점 |  |
+| `필수` | :white_check_mark: | Tree |  |
+| `필수` | :white_check_mark: | 그래프(Graph)와 트리(Tree)의 차이점 |  |
 | `필수` | :white_check_mark: | Heap |  |
 | `필수` | :white_check_mark: | Red-Black Tree |  |
 | `필수` | :white_check_mark: | B+ Tree |  |
