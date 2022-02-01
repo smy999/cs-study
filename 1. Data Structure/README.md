@@ -7,9 +7,9 @@
 - [Queue](#Queue)
 - [Graph](#Graph)
 - [Tree](#Tree)
-- 그래프(Graph)와 트리(Tree)의 차이점
+- [Graph vs Tree](#Graph-vs-Tree)
 - [Heap](#Heap)
-- [Red-Black Tree](#Red-Black-Tree)
+- [Red-Black Tree](#RedBlack-Tree)
 - [B+ Tree](#B+Tree)
 - [참고자료](#)
 
@@ -657,6 +657,145 @@ Graph는 여러 개의 고립된 부분 그래프(Isolated Subgraphs)로 구성�
 
 # Tree
 
+### **1. 개념**
+
+나뭇가지처럼 연결된 비선형 계층적 자료구조
+
+Graph의 한 종류로, 정점과 간선을 이용하여 데이터를 표현한다.
+
+서로 다른 두 정점을 연결하는 길이 하나뿐인 그래프를 트리라고 한다.
+
+
+
+<br>
+
+
+
+### **2. 특징**
+
+- 정점(Node) 들과 노드들을 연결하는 간선(Edge)들로 구성되어 있다. (N 개의 Node, N-1개의 Edge)
+- 하나의 루트(Root) 노드를 가진다.
+- 루트 노드는 0개 이상의 자식 노드를 가진다. (루트 노드를 제외한 모든 노드는 단 하나의 부모 노드를 가진다.)
+- 자식 노드 또한 0개 이상의 자식 노드를 갖는다.
+- 비선형 자료구조로 계층적 관계를 표현한다.
+- Graph의 한 종류다. (Cycle이 없는 하나의 연결 그래프: Connected Graph, 방향성이 있는 비순환 그래프: Directed Acycle Graph)
+- 트리는 데이터의 저장보다는 저장된 데이터를 효과적으로 탐색하기 위해 사용한다.
+
+
+
+<br>
+
+
+
+### 3. 구조
+
+![datastructure_tree](https://user-images.githubusercontent.com/33407191/151926061-3968f4e8-db48-4afd-923c-ae7b79e1f107.png)
+
+- Root Node: 부모가 없는 노드, 트리는 하나의 루트 노드만을 가진다.
+- Leaf Node: 자식이 없는 노드, ‘말단 노드’ 또는 ‘잎 노드’라고도 부른다.
+- Internal Node: 단말 노드가 아닌 노드
+- Edge: 노드를 연결하는 선 (link, branch라고도 부름)
+- Sibling: 같은 부모를 가지는 노드
+- 노드의 크기(size): 자신을 포함한 모든 자손 노드의 개수
+- 노드의 깊이(depth): 루트에서 어떤 노드에 도달하기 위해 거쳐야 하는 간선의 수
+- Level: 트리의 특정 깊이를 가지는 노드의 집합
+- Degree: 하위 트리 개수 / 간선 수 (degree) = 각 노드가 지닌 가지의 수
+- 트리의 차수(degree of tree): 트리의 최대 차수
+- 트리의 높이(height): 루트 노드에서 가장 깊숙이 있는 노드의 깊이
+
+
+
+<br>
+
+
+
+### 4. 종류
+
+| **Binary Tree**<br>**(이진 트리)**                  | 각 노드가 최대 두 개의 자식을 갖는 트리각 노드는 자식이 없거나 한 개 이거나 두 개만을 갖는다.<br>2개의 자식 노드 중 왼쪽 노드를 Left Node, 오른쪽 노드를 Right Node라고 한다. |
+| --------------------------------------------------- | ------------------------------------------------------------ |
+| **Binary Search Tree**<br>**(BST, 이진 탐색 트리)** | 노드에 저장된 키(key)는 유일하다.<br>왼쪽 자식 노드의 키 < 부모의 키 < 오른쪽 자식 노드의 키<br>왼쪽과 오른쪽 서브 트리도 이진 탐색 트리이다.효율적인 탐색을 위한 고안됨 |
+| **Balanced Tree**<br>**(B-Tree, 균형 트리)**        | 모든 노드의 왼쪽과 오른쪽 하위 트리의 높이가 최대 1만큼 차이가 날 수 있는 트리다. |
+| **Full Binary Tree**<br>**(전 이진 트리)**          | 모든 노드가 0개 또는 2개의 자식 노드를 갖는 트리             |
+| **Complete Binary Tree**<br>**(완전 이진 트리)**    | 마지막 레벨을 제외하고 모든 레벨이 완전히 채워져 있다.<br>마지막 레벨은 노드가 왼쪽에서 오른쪽으로 채워져야 한다.<br>완전 이진 트리는 배열을 사용해 효율적으로 표현 가능 |
+| **Perfect Binary Tree**<br>**(포화 이진 트리)**     | 포화 이진 트리는 모든 레벨이 노드로 꽉 차 있는 트리전 이진 트리의 성질도 만족해야 한다.<br>즉 모든 노드가 0개 혹은 2개의 자식 노드를 갖는다.모든 말단 노드가 동일한 깊이 또는 레벨을 갖는다.<br>트리의 노드 개수가 2^(높이)-1 개다. |
+| **Skewed Binary Tree**<br>**(편향 이진 트리)**      | 하나의 차수로만 이루어져 있는 경우<br>배열(리스트)와 같은 선형 구조이므로 Leaf Node 탐색 시 모두 데이터를 전부 탐색해야 한다는 단점이 있다. (보완 : 균형 트리) |
+
+
+
+<br>
+
+
+
+### 5. 순회
+
+https://code-lab1.tistory.com/9 → 해당 포스팅에서 시작 자료와 함께 이해하기 쉽게 설명되어 있다. (그래프 그리기가 너무 벅차서... ㅎ)
+
+
+
+#### **1) 전위 순회**
+
+탐색 순서: Root - Left subtree - Right subtree
+
+더 이상 왼쪽 서브 트리가 없을 때까지 들어간 후에 방문한다. 그 후 부모 노드를 방문하고, 오른쪽 서브 트리로 들어가서 다시 오른쪽 서브 트리의 왼쪽 서브 트리가 없을 때까지 들어간 후에 방문한다.
+
+
+
+#### **2) 중위 순회**
+
+탐색 순서: Left subtree - Root - Right subtree
+
+일단 부모 노드를 먼저 방문한 후 왼쪽, 오른쪽 노드를 방문하고 하위 노드로 들어간다.
+
+
+
+#### **3) 후위 순회**
+
+탐색 순서: Left subtree - Right subtree - Root
+
+더 이상 왼쪽 서브 트리가 없을 때까지 들어간 후에 방문한다. 그 후 오른쪽 서브 트리로 들어가서 다시 오른쪽 서브 트리의 왼쪽 서브 트리가 없을 때까지 들어간 후에 방문한다. 부모 노드는 왼쪽, 오른쪽 하위 노드가 모두 방문된 후에 방문한다.
+
+
+
+<br>
+
+
+
+### 6. 구현
+
+행렬, 리스트로 구현할 수 있다.
+
+#### **1) 인접 배열**
+
+\- 1차원: 자신의 부모 배열만 저장
+
+\- 2차원: 이진 트리의 경우, A[cur][left], A[cur][right] 와 같이 자신의 양쪽 노드를 저장
+
+
+
+#### **2) 인접 리스트**
+
+\- 가중치 O: Node와 가중치 정보를 저장하는 class 사용 + ArrayList[] 사용
+
+\- 가중치 X: 단순 ArrayList
+
+
+
+<br>
+
+
+
+### 7. 사용처
+
+계층 적 데이터 저장: 데이터를 계층 구조로 저장하는 데 사용(파일 및 폴더)
+
+효율적인 검색 속도: 효율적인 삽입, 삭제 및 검색을 위해 트리 사용
+
+힙(Heap): 트리로 된 자료 구조
+
+데이터 베이스 인덱싱: 데이터베이스 인덱싱을 구현하는 데 트리를 사용 (B-Tree, B+Tree, AVL-Tree..)
+
+Trie: 사전을 저장하는 데 사용되는 종류의 트리
+
 
 
 <br>
@@ -665,14 +804,26 @@ Graph는 여러 개의 고립된 부분 그래프(Isolated Subgraphs)로 구성�
 
 
 
-<hr>
-
-<hr>
+#  Graph vs Tree
 
 
 
+| 구분            | Graph                                                        | Tree                                                         |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 설명            | Node와 그 node를 연결하는 edge를 하나로 모아놓은 구조        | Graph의 한 종류로 DAG(Directed Acycle Graph: 방향성이 있는 비순환 Graph)의 한 종류 |
+| 방향성          | Directed / Undirected                                        | Directed only                                                |
+| Cycle           | Cycle 가능 / 자체 간선(self-loop) 가능<br>Cycle / Acycle     | Cycle 불가능 / 자체 간선 불가능<br>Acycle only               |
+| Root            | Root 개념이 없다.                                            | 1개의 Root만 존재                                            |
+| Parent-Child    | X                                                            | O                                                            |
+| Model           | 네트워크 모델                                                | 계층 모델                                                    |
+| 순회(Traversal) | DFS, BFS                                                     | DFS, BFS 안의 Pre & In & Post                                |
+| Edge            | Graph의 종류에 따라 간선의 수가 다르다.<br>Edge가 존재하지 않을 수 있다. | Node가 N 개인 Tree는 항상 N-1개의 간선을 가진다.             |
+| 경로(Path)      | -                                                            | 임의의 두 Node 간의 경로는 유일하다.                         |
+| 예시            | 지도, 지하철 노선, 도로, 선수과목                            | 이진 트리, 이진 탐색 트리, 균형 트리, 이진 힙 등             |
 
 
+
+<br>
 
 <br>
 
@@ -977,6 +1128,19 @@ Graph
 - https://hongcoding.tistory.com/78
 
 - https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html
+
+Tree
+
+- https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html
+- https://yoongrammer.tistory.com/68
+- https://monsieursongsong.tistory.com/6
+- [https://velog.io/@kimdukbae/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%ED%8A%B8%EB%A6%AC-Tree](https://velog.io/@kimdukbae/자료구조-트리-Tree)
+- https://code-lab1.tistory.com/8
+- https://code-lab1.tistory.com/9
+
+Graph vs Tree
+
+- https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html
 
 Heap
 
