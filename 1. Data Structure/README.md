@@ -909,7 +909,7 @@ Trie: 사전을 저장하는 데 사용되는 종류의 트리
 <br>
 
 
-# Red-Black-Tree
+# Red-Black Tree
 
 ### 1. 개념
 
