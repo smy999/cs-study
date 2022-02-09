@@ -1019,7 +1019,7 @@ Red-Black Tree를 만들어보자. node를 추가하다가 Double Red가 생긴�
 
 
 
-### 4. 시간복잡도
+### 6. 시간복잡도
 
 * Restructuring: O(1)
 * Recoloring: O(logn)
