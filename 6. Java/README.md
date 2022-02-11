@@ -1,7 +1,7 @@
 # Data Structure
 
 - [Java란?](#Java란)
-- [Java Platform](#Java-Plarform)
+- [Java Platform](#Java-Platform)
 
 
 <br>
