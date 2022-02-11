@@ -77,7 +77,7 @@
 
 ## 5. Operating System
 
-| 구분 | 진행상태 | 디자인  | 비고 |
+| 구분 | 진행상태 | 운영체제  | 비고 |
 | ------ | ------ | ------ | ------ |
 | `필수` | :white_large_square: |  |  |
 
@@ -85,9 +85,10 @@
 
 ## 6. Java
 
-| 구분 | 진행상태 | 디자인  | 비고 |
+| 구분 | 진행상태 | 자바  | 비고 |
 | ------ | ------ | ------ | ------ |
-| `필수` | :white_large_square: | Java란? |  |
+| `필수` | :white_check_mark: | Java란? |  |
+| `필수` | :white_check_mark: | Java Platform |  |
 
 <br>
 
