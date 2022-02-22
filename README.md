@@ -89,6 +89,7 @@
 | ------ | ------ | ------ | ------ |
 | `필수` | :white_check_mark: | Java란? |  |
 | `필수` | :white_check_mark: | Java Platform |  |
+| `필수` | :white_check_mark: | OOP |  |
 
 <br>
 
