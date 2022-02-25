@@ -1,4 +1,4 @@
-# Data Structure
+# Java
 
 - [Java란?](#Java란)
 - [Java Platform](#Java-Platform)
