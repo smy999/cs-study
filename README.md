@@ -89,7 +89,7 @@
 | ------ | ------ | ------ | ------ |
 | `필수` | :white_check_mark: | Java란? |  |
 | `필수` | :white_check_mark: | Java Platform |  |
-| `필수` | :white_check_mark: | OOP |  |
+| `필수` | :white_check_mark: | OOP | 5대 원칙 추가하기 |
 
 <br>
 
